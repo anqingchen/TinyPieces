@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [
+      { "model": "tinypieces:block/quartz_ore" }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": [
+      { "model": "tinypieces:block/nether_gold_ore" }
+    ]
+  }
+}

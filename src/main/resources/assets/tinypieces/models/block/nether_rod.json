@@ -1,0 +1,7 @@
+{
+  "parent": "block/end_rod",
+  "textures": {
+    "end_rod": "tinypieces:block/nether_rod",
+    "particle": "tinypieces:block/nether_rod"
+  }
+}

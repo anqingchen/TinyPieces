@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up": { "model": "tinypieces:block/nether_rod_red" },
+    "facing=down": { "model": "tinypieces:block/nether_rod_red", "x": 180 },
+    "facing=east": { "model": "tinypieces:block/nether_rod_red", "y": 90, "x": 90 },
+    "facing=south": { "model": "tinypieces:block/nether_rod_red", "y": 180, "x": 90 },
+    "facing=west": { "model": "tinypieces:block/nether_rod_red", "y": 270, "x": 90 },
+    "facing=north": { "model": "tinypieces:block/nether_rod_red", "y": 0, "x": 90 }
+  }
+}
