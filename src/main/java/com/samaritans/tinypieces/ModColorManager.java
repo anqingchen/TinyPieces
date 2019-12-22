@@ -34,6 +34,6 @@ public class ModColorManager {
             return GrassColors.get(0.5d, 1.0d);
         };
 
-        blockColors.register(waterColorHandler, ModBlocks.water_puddle);
+        blockColors.register(waterColorHandler, ModBlocks.WATER_PUDDLE);
     }
 }

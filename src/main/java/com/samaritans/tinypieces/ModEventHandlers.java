@@ -2,23 +2,16 @@ package com.samaritans.tinypieces;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.client.renderer.entity.LivingRenderer;
-import net.minecraft.client.renderer.entity.SheepRenderer;
-import net.minecraft.client.renderer.entity.model.SheepModel;
-import net.minecraft.client.renderer.entity.model.SheepWoolModel;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -34,7 +27,7 @@ public class ModEventHandlers {
         if (!event.getWorld().isRemote && event.getPlayer().isSneaking() && event.getItemStack().getItem() == Items.POTION &&
                 event.getPlayer().canPlayerEdit(event.getPos(), event.getFace(), event.getItemStack())) {
             BlockPos target = event.getWorld().getBlockState(event.getPos()).getMaterial().isReplaceable() ? event.getPos() : event.getPos().offset(event.getFace());
-            event.getWorld().setBlockState(target, BiomeDictionary.hasType(event.getWorld().getBiome(target), BiomeDictionary.Type.COLD) ? ModBlocks.ice_glaze.getDefaultState() : ModBlocks.water_puddle.getDefaultState());
+            event.getWorld().setBlockState(target, BiomeDictionary.hasType(event.getWorld().getBiome(target), BiomeDictionary.Type.COLD) ? ModBlocks.ICE_GLAZE.getDefaultState() : ModBlocks.WATER_PUDDLE.getDefaultState());
             event.getItemStack().shrink(1);
         }
     }
@@ -45,7 +38,7 @@ public class ModEventHandlers {
                 event.getPlayer().canPlayerEdit(event.getPos(), event.getFace(), event.getItemStack())) {
             Block target = event.getWorld().getBlockState(event.getPos()).getBlock();
             if (target == Blocks.STONE)
-                event.getWorld().setBlockState(event.getPos(), ModBlocks.mossy_stone.getDefaultState());
+                event.getWorld().setBlockState(event.getPos(), ModBlocks.MOSSY_STONE.getDefaultState());
             else if (target == Blocks.COBBLESTONE)
                 event.getWorld().setBlockState(event.getPos(), Blocks.MOSSY_COBBLESTONE.getDefaultState());
             else if (target == Blocks.STONE_BRICKS)

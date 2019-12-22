@@ -40,7 +40,7 @@ public class ThinBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState blockState, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-        return blockState.getBlock() == ModBlocks.ice_glaze ? SHAPE : VoxelShapes.empty();
+        return blockState.getBlock() == ModBlocks.ICE_GLAZE ? SHAPE : VoxelShapes.empty();
     }
 
     @Override
