@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:egg"
+  },
+  "result": "tinypieces:cooked_egg",
+  "experience": 0.35,
+  "cookingtime": 200,
+  "conditions": [
+    {
+      "type": "forge:item_exists",
+      "item": "tinypieces:cooked_egg"
+    }
+  ]
+}
