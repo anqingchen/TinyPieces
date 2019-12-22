@@ -53,9 +53,9 @@ public class TinyPieces {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        RenderingRegistry.registerEntityRenderingHandler(SheepEntity.class, StubbledSheepRenderer::new);
+        // pre-init
+        if (Config.Client.SHEEP_STUBBLE.get())
+            RenderingRegistry.registerEntityRenderingHandler(SheepEntity.class, StubbledSheepRenderer::new);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

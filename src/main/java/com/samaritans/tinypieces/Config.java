@@ -13,6 +13,7 @@ public class Config {
     private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
 
     public static final Tweaks TWEAKS = new Tweaks(COMMON_BUILDER);
+    public static final Client CLIENT = new Client(CLIENT_BUILDER);
 
     public static ForgeConfigSpec COMMON_CONFIG = COMMON_BUILDER.build();
     public static ForgeConfigSpec CLIENT_CONFIG = CLIENT_BUILDER.build();
@@ -33,6 +34,18 @@ public class Config {
             CHICKEN_FEATHER = builder.comment("Allow chickens to drop feathers randomly")
                     .define("Enable Chickens Drop Feather", true);
             builder.pop();
+        }
+    }
+
+    public static class Client {
+        public static final String CATEGORY_CLIENT = "client";
+
+        public static ForgeConfigSpec.BooleanValue SHEEP_STUBBLE;
+
+        public Client(ForgeConfigSpec.Builder builder) {
+            builder.push(CATEGORY_CLIENT);
+            SHEEP_STUBBLE = builder.comment("Make sheep show their color after being sheared")
+                    .define("Enable Sheep Stubble Color", true);
         }
     }
 
