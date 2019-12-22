@@ -5,20 +5,30 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerBlock;
+import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.goal.BreedGoal;
+import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -66,6 +76,22 @@ public class ModEventHandlers {
             if (target instanceof FlowerBlock) {
                 // todo: random flower apperance somehow
                 if (!event.getPlayer().isCreative()) event.getItemStack().shrink(1);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBreedPigorRabbit(BabyEntitySpawnEvent event) {
+        if (!event.getParentA().world.isRemote && (event.getParentA() instanceof PigEntity || event.getParentA() instanceof RabbitEntity)) {
+            int amount = event.getParentA().getRNG().nextInt(4);
+            for (int i = 0; i < amount; ++i) {
+                World world = event.getParentA().world;
+                AnimalEntity parentA = (AnimalEntity) event.getParentA();
+                AnimalEntity parentB = (AnimalEntity) event.getParentB();
+                AgeableEntity ageableEntity = parentA.createChild(parentB);
+                ageableEntity.setGrowingAge(-24000);
+                ageableEntity.setLocationAndAngles(parentA.posX, parentA.posY, parentA.posZ, 0.0F, 0.0F);
+                world.addEntity(ageableEntity);
             }
         }
     }
