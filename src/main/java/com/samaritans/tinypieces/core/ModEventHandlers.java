@@ -8,8 +8,6 @@ import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.BreedGoal;
-import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.PigEntity;
@@ -20,7 +18,6 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
@@ -28,7 +25,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -41,7 +37,7 @@ public class ModEventHandlers {
     public static void useWaterBottleEvent(PlayerInteractEvent.RightClickBlock event) {
         boolean iceEnabled = Config.ice_glaze;
         boolean waterEnabled = Config.water_puddle;
-        if ((iceEnabled || waterEnabled) && !event.getWorld().isRemote && event.getPlayer().isSneaking() && PotionUtils.getPotionFromItem(event.getItemStack()) == Potions.WATER &&
+        if (!event.getWorld().isRemote && (iceEnabled || waterEnabled) && event.getPlayer().isSneaking() && PotionUtils.getPotionFromItem(event.getItemStack()) == Potions.WATER &&
                 event.getPlayer().canPlayerEdit(event.getPos(), event.getFace(), event.getItemStack())) {
             BlockPos target = event.getWorld().getBlockState(event.getPos()).getMaterial().isReplaceable() ? event.getPos() : event.getPos().offset(event.getFace());
             BlockState setTo = waterEnabled ? ModBlocks.water_puddle.getDefaultState() : ModBlocks.ice_glaze.getDefaultState();
@@ -82,7 +78,7 @@ public class ModEventHandlers {
 
     @SubscribeEvent
     public static void onBreedPigorRabbit(BabyEntitySpawnEvent event) {
-        if (!event.getParentA().world.isRemote && (event.getParentA() instanceof PigEntity || event.getParentA() instanceof RabbitEntity)) {
+        if (!event.getParentA().world.isRemote && Config.pig_rabbit_litter && (event.getParentA() instanceof PigEntity || event.getParentA() instanceof RabbitEntity)) {
             int amount = event.getParentA().getRNG().nextInt(4);
             for (int i = 0; i < amount; ++i) {
                 World world = event.getParentA().world;
@@ -98,7 +94,7 @@ public class ModEventHandlers {
 
     @SubscribeEvent
     public static void chickenShedFeathers(LivingEvent.LivingUpdateEvent event) {
-        if (Config.chicken_feather && !event.getEntityLiving().world.isRemote && event.getEntityLiving() instanceof ChickenEntity) {
+        if (!event.getEntityLiving().world.isRemote && Config.chicken_feather && event.getEntityLiving() instanceof ChickenEntity) {
             LivingEntity chicken = event.getEntityLiving();
             if (chicken.world.isAreaLoaded(chicken.getPosition(), 1) && !chicken.isChild() && chicken.getRNG().nextInt(600) == 0) {
                 InventoryHelper.spawnItemStack(chicken.world, chicken.posX, chicken.posY, chicken.posZ, new ItemStack(Items.FEATHER));
@@ -108,14 +104,14 @@ public class ModEventHandlers {
 
     @SubscribeEvent
     public static void shulkerSpawn(WorldEvent.PotentialSpawns event) {
-        if (Config.shulker_spawn && event.getWorld().getDimension().getType() == DimensionType.THE_END && Feature.END_CITY.isPositionInsideStructure(event.getWorld(), event.getPos())) {
+        if (!event.getWorld().isRemote() && Config.shulker_spawn && event.getWorld().getDimension().getType() == DimensionType.THE_END && Feature.END_CITY.isPositionInsideStructure(event.getWorld(), event.getPos())) {
             event.getList().add(shulker);
         }
     }
 
     @SubscribeEvent
     public static void rabbitSpawn(WorldEvent.PotentialSpawns event) {
-        if (Config.rabbit_spawn && BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST)) {
+        if (!event.getWorld().isRemote() && Config.rabbit_spawn && BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST)) {
             event.getList().add(rabbit);
         }
     }

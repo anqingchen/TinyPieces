@@ -1,8 +1,8 @@
 package com.samaritans.tinypieces.core;
 
 import com.samaritans.tinypieces.TinyPieces;
-import com.samaritans.tinypieces.blocks.ThinBlock;
 import com.samaritans.tinypieces.blocks.NetherRodBlock;
+import com.samaritans.tinypieces.blocks.ThinBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;

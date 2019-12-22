@@ -7,6 +7,7 @@ final class ServerConfig {
     final ForgeConfigSpec.BooleanValue SHULKER_SPAWN;
     final ForgeConfigSpec.BooleanValue RABBIT_SPAWN;
     final ForgeConfigSpec.BooleanValue CHICKEN_FEATHER;
+    final ForgeConfigSpec.BooleanValue PIG_RABBIT_LITTER;
     final ForgeConfigSpec.BooleanValue EXTRA_STAIRS;
 
     private static final String CATEGORY_BLOCKS = "blocks";
@@ -39,6 +40,8 @@ final class ServerConfig {
                 .define("Enable Rabbits Spawn in Forest", true);
         CHICKEN_FEATHER = builder.comment("Allow chickens to drop feathers randomly")
                 .define("Enable Chickens Drop Feather", true);
+        PIG_RABBIT_LITTER = builder.comment("Allow Pigs and Rabbits to Make up to 4 Babies at A Time")
+                .define("Enable Pig/Rabbit Litter", true);
         EXTRA_STAIRS = builder.comment("Craft 8 wooden stairs instead of 4")
                 .define("Enable Extra Stairs", true);
         builder.pop();

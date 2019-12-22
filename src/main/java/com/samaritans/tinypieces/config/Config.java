@@ -8,6 +8,7 @@ public class Config {
     public static boolean shulker_spawn;
     public static boolean rabbit_spawn;
     public static boolean chicken_feather;
+    public static boolean pig_rabbit_litter;
     public static boolean extra_stairs;
 
     public static boolean nether_gold_ore;

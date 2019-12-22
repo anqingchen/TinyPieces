@@ -16,6 +16,7 @@ public class ConfigHelper {
         Config.shulker_spawn = ConfigHolder.SERVER.SHULKER_SPAWN.get();
         Config.rabbit_spawn = ConfigHolder.SERVER.RABBIT_SPAWN.get();
         Config.chicken_feather = ConfigHolder.SERVER.CHICKEN_FEATHER.get();
+        Config.pig_rabbit_litter = ConfigHolder.SERVER.PIG_RABBIT_LITTER.get();
         Config.extra_stairs = ConfigHolder.SERVER.EXTRA_STAIRS.get();
 
         Config.nether_gold_ore = ConfigHolder.SERVER.NETHER_GOLD_ORE.get();
