@@ -17,7 +17,6 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = TinyPieces.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(TinyPieces.MODID)
 public class ModBlocks {
     public static final Block NETHER_GOLD_ORE;
     public static final Block QUARTZ_ORE;

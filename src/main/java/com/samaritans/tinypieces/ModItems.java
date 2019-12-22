@@ -9,7 +9,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = TinyPieces.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(TinyPieces.MODID)
 public class ModItems {
     public static final Item COOKED_EGG;
 
