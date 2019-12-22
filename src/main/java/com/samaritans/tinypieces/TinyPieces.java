@@ -2,6 +2,8 @@ package com.samaritans.tinypieces;
 
 import com.samaritans.tinypieces.client.StubbledSheepRenderer;
 import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;

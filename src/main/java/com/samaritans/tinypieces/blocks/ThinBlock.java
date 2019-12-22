@@ -66,10 +66,12 @@ public class ThinBlock extends Block {
     @Override
     public void randomTick(BlockState blockState, World world, BlockPos pos, Random random) {
         super.randomTick(blockState, world, pos, random);
-        if (!world.isRainingAt(pos) && world.canBlockSeeSky(pos)) {
-            if (random.nextInt(5) == 0) {
+        if (blockState.getBlock() == ModBlocks.WATER_PUDDLE && !world.isRainingAt(pos) && world.canBlockSeeSky(pos)) {
+            if (random.nextInt(3) == 0) {
                 world.setBlockState(pos, Blocks.AIR.getDefaultState());
             }
+        } else if (world.getLightValue(pos) <= 5 && random.nextInt(3) == 0) {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState());
         }
     }
 
@@ -89,7 +91,6 @@ public class ThinBlock extends Block {
 
     @Override
     public boolean isValidPosition(BlockState blockState, IWorldReader worldIn, BlockPos pos) {
-        BlockState blockstate = worldIn.getBlockState(pos);
-        return !VoxelShapes.compare(blockstate.getCollisionShape(worldIn, pos).project(Direction.UP), SHAPE, IBooleanFunction.ONLY_SECOND);
+        return func_220055_a(worldIn, pos.down(), Direction.UP);
     }
 }

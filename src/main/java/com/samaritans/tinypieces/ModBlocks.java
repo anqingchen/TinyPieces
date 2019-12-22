@@ -33,7 +33,7 @@ public class ModBlocks {
         NETHER_ROD = new NetherRodBlock();
         RED_NETHER_ROD = new NetherRodBlock();
         MOSSY_STONE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(5).harvestLevel(1).harvestTool(ToolType.PICKAXE));
-        ICE_GLAZE = new ThinBlock(Block.Properties.create(Material.ICE).harvestTool(ToolType.SHOVEL).harvestLevel(1).hardnessAndResistance(2).slipperiness(0.98f).noDrops());
+        ICE_GLAZE = new ThinBlock(Block.Properties.create(Material.ICE).harvestTool(ToolType.PICKAXE).harvestLevel(1).hardnessAndResistance(2).slipperiness(0.98f).noDrops().tickRandomly());
         WATER_PUDDLE = new ThinBlock(Block.Properties.create(Material.WATER, MaterialColor.WATER).noDrops().hardnessAndResistance(-1.0F, 3600000.0F).tickRandomly());
     }
 
@@ -53,7 +53,7 @@ public class ModBlocks {
     public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
         ForgeRegistries.BLOCKS.getValues().parallelStream().filter(block -> block.getRegistryName().getNamespace().equals(TinyPieces.MODID)).forEach(block -> {
-                final Item.Properties properties = new Item.Properties();   //.group(ModItemGroups.MOD_ITEM_GROUP);
+                final Item.Properties properties = new Item.Properties();    //.group(TinyPieces.TAB);
                 final BlockItem blockItem = new BlockItem(block, properties);
                 registry.register(blockItem.setRegistryName(block.getRegistryName()));
         });

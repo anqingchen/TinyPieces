@@ -3,6 +3,7 @@ package com.samaritans.tinypieces.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EndRodBlock;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
@@ -16,7 +17,7 @@ import java.util.Random;
 
 public class NetherRodBlock extends EndRodBlock {
     public NetherRodBlock() {
-        super(Block.Properties.create(Material.IRON).hardnessAndResistance(5).harvestLevel(2).harvestTool(ToolType.PICKAXE));
+        super(Block.Properties.create(Material.MISCELLANEOUS).hardnessAndResistance(0).harvestTool(ToolType.PICKAXE).lightValue(14).sound(SoundType.WOOD));
     }
 
     @Override
@@ -30,6 +31,5 @@ public class NetherRodBlock extends EndRodBlock {
         if (rand.nextInt(5) == 0) {
             world.addParticle(ParticleTypes.FLAME, posX + (double)lvt_5_1_.getXOffset() * mult, posY + (double)lvt_5_1_.getYOffset() * mult, posZ + (double)lvt_5_1_.getZOffset() * mult, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D);
         }
-
     }
 }
