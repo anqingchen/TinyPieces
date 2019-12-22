@@ -48,7 +48,7 @@ public class ModEventHandlers {
 
     @SubscribeEvent
     public static void chickenShedFeathers(LivingEvent.LivingUpdateEvent event) {
-        if (Config.CHICKEN_FEATHER.get() && !event.getEntityLiving().world.isRemote && event.getEntityLiving() instanceof ChickenEntity) {
+        if (Config.Tweaks.CHICKEN_FEATHER.get() && !event.getEntityLiving().world.isRemote && event.getEntityLiving() instanceof ChickenEntity) {
             LivingEntity chicken = event.getEntityLiving();
             if (chicken.world.isAreaLoaded(chicken.getPosition(), 1) && !chicken.isChild() && chicken.getRNG().nextInt(600) == 0) {
                 InventoryHelper.spawnItemStack(chicken.world, chicken.posX, chicken.posY, chicken.posZ, new ItemStack(Items.FEATHER));
@@ -58,14 +58,14 @@ public class ModEventHandlers {
 
     @SubscribeEvent
     public static void shulkerSpawn(WorldEvent.PotentialSpawns event) {
-        if (Config.SHULKER_SPAWN.get() && event.getWorld().getDimension().getType() == DimensionType.THE_END && Feature.END_CITY.isPositionInsideStructure(event.getWorld(), event.getPos())) {
+        if (Config.Tweaks.SHULKER_SPAWN.get() && event.getWorld().getDimension().getType() == DimensionType.THE_END && Feature.END_CITY.isPositionInsideStructure(event.getWorld(), event.getPos())) {
             event.getList().add(shulker);
         }
     }
 
     @SubscribeEvent
     public static void rabbitSpawn(WorldEvent.PotentialSpawns event) {
-        if (Config.RABBIT_SPAWN.get() && BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST)) {
+        if (Config.Tweaks.RABBIT_SPAWN.get() && BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST)) {
             event.getList().add(rabbit);
         }
     }
