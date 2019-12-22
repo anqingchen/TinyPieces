@@ -6,5 +6,8 @@
   "block.tinypieces.mossy_stone": "Mossy Stone",
   "block.tinypieces.ice_glaze": "Ice Glaze",
   "block.tinypieces.water_puddle": "Water Puddle",
-  "item.tinypieces.cooked_egg": "Cooked Egg"
+
+  "item.tinypieces.cooked_egg": "Cooked Egg",
+
+  "itemGroup.tabTinypieces": "Tiny Pieces"
 }

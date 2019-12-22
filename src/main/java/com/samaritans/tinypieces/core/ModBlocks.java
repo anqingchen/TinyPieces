@@ -44,7 +44,7 @@ public class ModBlocks {
     public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
         ForgeRegistries.BLOCKS.getValues().parallelStream().filter(block -> block.getRegistryName().getNamespace().equals(TinyPieces.MODID)).forEach(block -> {
-                final Item.Properties properties = new Item.Properties();    //.group(TinyPieces.TAB);
+                final Item.Properties properties = new Item.Properties().group(TinyPieces.TAB);
                 final BlockItem blockItem = new BlockItem(block, properties);
                 registry.register(blockItem.setRegistryName(block.getRegistryName()));
         });

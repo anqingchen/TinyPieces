@@ -4,10 +4,13 @@ import com.samaritans.tinypieces.client.StubbledSheepRenderer;
 import com.samaritans.tinypieces.config.Config;
 import com.samaritans.tinypieces.config.ConfigHolder;
 import com.samaritans.tinypieces.config.RecipeEnabledCondition;
+import com.samaritans.tinypieces.core.ModBlocks;
 import com.samaritans.tinypieces.core.ModColorManager;
 import com.samaritans.tinypieces.core.ModEventHandlers;
 import com.samaritans.tinypieces.world.OreGeneration;
 import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,6 +34,13 @@ public class TinyPieces {
     public static final Logger LOGGER = LogManager.getLogger();
 
     public static final String MODID = "tinypieces";
+
+    public static final ItemGroup TAB = new ItemGroup("tabTinypieces") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(ModBlocks.red_nether_rod);
+        }
+    };
 
     public TinyPieces() {
         // Register the setup method for modloading
