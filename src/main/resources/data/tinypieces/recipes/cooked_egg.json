@@ -8,8 +8,8 @@
   "cookingtime": 200,
   "conditions": [
     {
-      "type": "forge:item_exists",
-      "item": "tinypieces:cooked_egg"
+      "type": "tinypieces:recipe_enabled",
+      "item": "cooked_egg"
     }
   ]
 }

@@ -1,6 +1,7 @@
-package com.samaritans.tinypieces;
+package com.samaritans.tinypieces.core;
 
 import com.google.common.base.Preconditions;
+import com.samaritans.tinypieces.TinyPieces;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 

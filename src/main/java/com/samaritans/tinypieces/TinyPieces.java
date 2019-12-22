@@ -1,19 +1,20 @@
 package com.samaritans.tinypieces;
 
 import com.samaritans.tinypieces.client.StubbledSheepRenderer;
-import net.minecraft.data.CookingRecipeBuilder;
+import com.samaritans.tinypieces.config.Config;
+import com.samaritans.tinypieces.config.ConfigHolder;
+import com.samaritans.tinypieces.config.RecipeEnabledCondition;
+import com.samaritans.tinypieces.core.ModColorManager;
+import com.samaritans.tinypieces.core.ModEventHandlers;
+import com.samaritans.tinypieces.world.OreGeneration;
 import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.RecipeManager;
-import net.minecraft.world.storage.loot.functions.Smelt;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -21,7 +22,6 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Mod(TinyPieces.MODID)
 public class TinyPieces {
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public static final String MODID = "tinypieces";
 
@@ -46,12 +46,9 @@ public class TinyPieces {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
         // Register the Config files
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_CONFIG);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG);
-
-        // Load Config files
-        Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("tinypieces-client.toml"));
-        Config.loadConfig(Config.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("tinypieces-common.toml"));
+        final ModLoadingContext modLoadingContext = ModLoadingContext.get();
+        modLoadingContext.registerConfig(ModConfig.Type.CLIENT, ConfigHolder.CLIENT_SPEC);
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -60,8 +57,11 @@ public class TinyPieces {
 
     private void setup(final FMLCommonSetupEvent event) {
         // pre-init
-        if (Config.Client.SHEEP_STUBBLE.get())
+        if (Config.sheep_stubble)
             RenderingRegistry.registerEntityRenderingHandler(SheepEntity.class, StubbledSheepRenderer::new);
+        CraftingHelper.register(RecipeEnabledCondition.Serializer.INSTANCE);
+        OreGeneration.setupOreGen();
+        LOGGER.debug("Common Setup Complete!");
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -71,17 +71,17 @@ public class TinyPieces {
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         // some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> {
-            LOGGER.info("Hello world from the MDK");
-            return "Hello world";
-        });
+//        InterModComms.sendTo("examplemod", "helloworld", () -> {
+//            LOGGER.info("Hello world from the MDK");
+//            return "Hello world";
+//        });
     }
 
     private void processIMC(final InterModProcessEvent event) {
         // some example code to receive and process InterModComms from other mods
-        LOGGER.info("Got IMC {}", event.getIMCStream().
-                map(m -> m.getMessageSupplier().get()).
-                collect(Collectors.toList()));
+//        LOGGER.info("Got IMC {}", event.getIMCStream().
+//                map(m -> m.getMessageSupplier().get()).
+//                collect(Collectors.toList()));
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

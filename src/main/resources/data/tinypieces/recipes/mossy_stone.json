@@ -13,8 +13,8 @@
   },
   "conditions": [
     {
-      "type": "forge:item_exists",
-      "item": "tinypieces:mossy_stone"
+      "type": "tinypieces:recipe_enabled",
+      "item": "mossy_stone"
     }
   ]
 }

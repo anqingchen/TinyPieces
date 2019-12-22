@@ -1,4 +1,4 @@
-package com.samaritans.tinypieces;
+package com.samaritans.tinypieces.core;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -34,6 +34,6 @@ public class ModColorManager {
             return GrassColors.get(0.5d, 1.0d);
         };
 
-        blockColors.register(waterColorHandler, ModBlocks.WATER_PUDDLE);
+        blockColors.register(waterColorHandler, ModBlocks.water_puddle);
     }
 }

@@ -14,5 +14,11 @@
   "result": {
     "item": "minecraft:oak_stairs",
     "count": 8
-  }
+  },
+  "conditions": [
+    {
+      "type": "tinypieces:recipe_enabled",
+      "item": "extra_stairs"
+    }
+  ]
 }

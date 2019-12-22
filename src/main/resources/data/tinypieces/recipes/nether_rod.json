@@ -18,8 +18,8 @@
   },
   "conditions": [
     {
-      "type": "forge:item_exists",
-      "item": "tinypieces:nether_rod"
+      "type": "tinypieces:recipe_enabled",
+      "item": "nether_rod"
     }
   ]
 }

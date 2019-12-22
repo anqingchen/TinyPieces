@@ -1,6 +1,6 @@
 package com.samaritans.tinypieces.blocks;
 
-import com.samaritans.tinypieces.ModBlocks;
+import com.samaritans.tinypieces.core.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -10,7 +10,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -40,7 +39,7 @@ public class ThinBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState blockState, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-        return blockState.getBlock() == ModBlocks.ICE_GLAZE ? SHAPE : VoxelShapes.empty();
+        return blockState.getBlock() == ModBlocks.ice_glaze ? SHAPE : VoxelShapes.empty();
     }
 
     @Override
@@ -66,7 +65,7 @@ public class ThinBlock extends Block {
     @Override
     public void randomTick(BlockState blockState, World world, BlockPos pos, Random random) {
         super.randomTick(blockState, world, pos, random);
-        if (blockState.getBlock() == ModBlocks.WATER_PUDDLE && !world.isRainingAt(pos) && world.canBlockSeeSky(pos)) {
+        if (blockState.getBlock() == ModBlocks.water_puddle && !world.isRainingAt(pos) && world.canBlockSeeSky(pos)) {
             if (random.nextInt(3) == 0) {
                 world.setBlockState(pos, Blocks.AIR.getDefaultState());
             }
