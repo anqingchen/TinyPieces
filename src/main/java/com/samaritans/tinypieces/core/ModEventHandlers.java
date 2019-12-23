@@ -32,6 +32,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class ModEventHandlers {
     private static final Biome.SpawnListEntry shulker = new Biome.SpawnListEntry(EntityType.SHULKER, 2, 1, 1);
     private static final Biome.SpawnListEntry rabbit = new Biome.SpawnListEntry(EntityType.RABBIT, 6, 2, 4);
+    private static final Biome.SpawnListEntry caveSpider = new Biome.SpawnListEntry(EntityType.CAVE_SPIDER, 40, 1, 3);
 
     @SubscribeEvent
     public static void useWaterBottleEvent(PlayerInteractEvent.RightClickBlock event) {
@@ -113,6 +114,15 @@ public class ModEventHandlers {
     public static void rabbitSpawn(WorldEvent.PotentialSpawns event) {
         if (!event.getWorld().isRemote() && Config.rabbit_spawn && BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST)) {
             event.getList().add(rabbit);
+        }
+    }
+
+    @SubscribeEvent
+    public static void caveSpiderSpawn(WorldEvent.PotentialSpawns event) {
+        if (!event.getWorld().isRemote() &&
+                (BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST) || BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.JUNGLE)) &&
+                event.getPos().getY() < 50) {
+            event.getList().add(caveSpider);
         }
     }
 }

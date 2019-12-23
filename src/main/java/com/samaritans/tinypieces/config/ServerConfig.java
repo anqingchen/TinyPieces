@@ -10,6 +10,13 @@ final class ServerConfig {
     final ForgeConfigSpec.BooleanValue PIG_RABBIT_LITTER;
     final ForgeConfigSpec.BooleanValue EXTRA_STAIRS;
 
+    private static final String CATEGORY_WORLD = "world";
+    final ForgeConfigSpec.BooleanValue MOSSY_FOREST;
+    final ForgeConfigSpec.BooleanValue MOSSY_JUNGLE;
+    final ForgeConfigSpec.BooleanValue ICY_SNOW;
+    final ForgeConfigSpec.BooleanValue SANDY_DESERT;
+    final ForgeConfigSpec.BooleanValue SANDY_MESA;
+
     private static final String CATEGORY_BLOCKS = "blocks";
     private static final String SUBCATEGORY_NETHER_GOLD_ORE = "nether gold ore";
     final ForgeConfigSpec.BooleanValue NETHER_GOLD_ORE;
@@ -45,6 +52,18 @@ final class ServerConfig {
         EXTRA_STAIRS = builder.comment("Craft 8 wooden stairs instead of 4")
                 .define("Enable Extra Stairs", true);
         builder.pop();
+
+        builder.push(CATEGORY_WORLD);
+        MOSSY_FOREST = builder.comment("Enable Mossy Stone/Cobblestone to Generate in Caves in Biomes Tagged with FOREST")
+                .define("Enable Mossy Forest", true);
+        MOSSY_JUNGLE = builder.comment("Enable Mossy Stone/Cobblestone and Vines to Generate in Caves in Biomes Tagged with JUNGLE")
+                .define("Enable Mossy Jungle", true);
+        ICY_SNOW = builder.comment("Enable Packed Ice/Blue Ice Clusters and Ice Glaze to Generate in Caves in Biomes Tagged with SNOWY")
+                .define("Enable Icy Snow", true);
+        SANDY_DESERT = builder.comment("Enable Sandstone/Chiseled Sandstone Caves Walls in Biomes Tagged with SANDY")
+                .define("Enable Sandy Desert", true);
+        SANDY_MESA = builder.comment("Enable Terracotta/Red Standstone Cave Walls in Biomes Tagged with MESA")
+                .define("Enable Sandy Mesa", true);
 
         builder.push(CATEGORY_BLOCKS);
         builder.push(SUBCATEGORY_NETHER_GOLD_ORE);

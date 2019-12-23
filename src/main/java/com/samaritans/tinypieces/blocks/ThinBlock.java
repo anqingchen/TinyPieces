@@ -3,7 +3,6 @@ package com.samaritans.tinypieces.blocks;
 import com.samaritans.tinypieces.core.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
@@ -67,10 +66,10 @@ public class ThinBlock extends Block {
         super.randomTick(blockState, world, pos, random);
         if (blockState.getBlock() == ModBlocks.water_puddle && !world.isRainingAt(pos) && world.canBlockSeeSky(pos)) {
             if (random.nextInt(3) == 0) {
-                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                world.removeBlock(pos, false);
             }
         } else if (world.getLightValue(pos) <= 5 && random.nextInt(3) == 0) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            world.removeBlock(pos, false);
         }
     }
 
@@ -83,7 +82,7 @@ public class ThinBlock extends Block {
     @Override
     public void neighborChanged(BlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (!isValidPosition(state, world, pos)) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
+            world.removeBlock(pos, false);
         }
         super.neighborChanged(state, world, pos, blockIn, fromPos, isMoving);
     }
@@ -91,5 +90,9 @@ public class ThinBlock extends Block {
     @Override
     public boolean isValidPosition(BlockState blockState, IWorldReader worldIn, BlockPos pos) {
         return func_220055_a(worldIn, pos.down(), Direction.UP);
+    }
+
+    public static boolean canPlaceOn(BlockState blockState, IWorldReader world, BlockPos pos) {
+        return func_220055_a(world, pos.down(), Direction.UP);
     }
 }

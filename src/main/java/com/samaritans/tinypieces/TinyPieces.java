@@ -7,7 +7,9 @@ import com.samaritans.tinypieces.config.RecipeEnabledCondition;
 import com.samaritans.tinypieces.core.ModBlocks;
 import com.samaritans.tinypieces.core.ModColorManager;
 import com.samaritans.tinypieces.core.ModEventHandlers;
+import com.samaritans.tinypieces.world.CaveGeneration;
 import com.samaritans.tinypieces.world.OreGeneration;
+import com.samaritans.tinypieces.world.feature.ModFeature;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -60,6 +62,8 @@ public class TinyPieces {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(ModEventHandlers.class);
+
+        ModFeature.init();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -68,6 +72,7 @@ public class TinyPieces {
             RenderingRegistry.registerEntityRenderingHandler(SheepEntity.class, StubbledSheepRenderer::new);
         CraftingHelper.register(RecipeEnabledCondition.Serializer.INSTANCE);
         OreGeneration.setupOreGen();
+        CaveGeneration.setupCaveGen();
         LOGGER.debug("Common Setup Complete!");
     }
 

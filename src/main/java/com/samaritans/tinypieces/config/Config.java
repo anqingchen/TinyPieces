@@ -11,6 +11,12 @@ public class Config {
     public static boolean pig_rabbit_litter;
     public static boolean extra_stairs;
 
+    public static boolean mossy_forest;
+    public static boolean mossy_jungle;
+    public static boolean icy_snow;
+    public static boolean sandy_desert;
+    public static boolean sandy_mesa;
+
     public static boolean nether_gold_ore;
     public static int nether_gold_ore_size;
     public static int nether_gold_ore_chance;

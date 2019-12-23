@@ -19,6 +19,12 @@ public class ConfigHelper {
         Config.pig_rabbit_litter = ConfigHolder.SERVER.PIG_RABBIT_LITTER.get();
         Config.extra_stairs = ConfigHolder.SERVER.EXTRA_STAIRS.get();
 
+        Config.mossy_forest = ConfigHolder.SERVER.MOSSY_FOREST.get();
+        Config.mossy_jungle = ConfigHolder.SERVER.MOSSY_JUNGLE.get();
+        Config.icy_snow = ConfigHolder.SERVER.ICY_SNOW.get();
+        Config.sandy_desert = ConfigHolder.SERVER.SANDY_DESERT.get();
+        Config.sandy_mesa = ConfigHolder.SERVER.SANDY_MESA.get();
+
         Config.nether_gold_ore = ConfigHolder.SERVER.NETHER_GOLD_ORE.get();
         Config.nether_gold_ore_chance = ConfigHolder.SERVER.NETHER_GOLD_ORE_CHANCE.get();
         Config.nether_gold_ore_size = ConfigHolder.SERVER.NETHER_GOLD_ORE_SIZE.get();
