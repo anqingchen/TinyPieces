@@ -6,7 +6,13 @@ public class Config {
 
     // Common
     public static boolean shulker_spawn;
+    public static int shulker_weight;
+    public static int shulker_group_min;
+    public static int shulker_group_max;
     public static boolean rabbit_spawn;
+    public static int rabbit_weight;
+    public static int rabbit_group_min;
+    public static int rabbit_group_max;
     public static boolean chicken_feather;
     public static boolean pig_rabbit_litter;
     public static boolean extra_stairs;

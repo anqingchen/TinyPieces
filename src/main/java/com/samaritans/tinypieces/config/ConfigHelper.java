@@ -14,7 +14,13 @@ public class ConfigHelper {
     public static void bakeServer(final ModConfig config) {
         serverConfig = config;
         Config.shulker_spawn = ConfigHolder.SERVER.SHULKER_SPAWN.get();
+        Config.shulker_weight = ConfigHolder.SERVER.SHULKER_SPAWN_WEIGHT.get();
+        Config.shulker_group_min = ConfigHolder.SERVER.SHULKER_SPAWN_GROUP_MIN.get();
+        Config.shulker_group_max = ConfigHolder.SERVER.SHULKER_SPAWN_GROUP_MAX.get();
         Config.rabbit_spawn = ConfigHolder.SERVER.RABBIT_SPAWN.get();
+        Config.rabbit_weight = ConfigHolder.SERVER.RABBIT_SPAWN_WEIGHT.get();
+        Config.rabbit_group_min = ConfigHolder.SERVER.RABBIT_SPAWN_GROUP_MIN.get();
+        Config.rabbit_group_max = ConfigHolder.SERVER.RABBIT_SPAWN_GROUP_MAX.get();
         Config.chicken_feather = ConfigHolder.SERVER.CHICKEN_FEATHER.get();
         Config.pig_rabbit_litter = ConfigHolder.SERVER.PIG_RABBIT_LITTER.get();
         Config.extra_stairs = ConfigHolder.SERVER.EXTRA_STAIRS.get();

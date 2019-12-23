@@ -4,8 +4,16 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 final class ServerConfig {
     private static final String CATEGORY_TWEAKS = "tweaks";
+    private static final String SUBCATEGORY_SHULKER= "shulker";
     final ForgeConfigSpec.BooleanValue SHULKER_SPAWN;
+    final ForgeConfigSpec.IntValue SHULKER_SPAWN_WEIGHT;
+    final ForgeConfigSpec.IntValue SHULKER_SPAWN_GROUP_MIN;
+    final ForgeConfigSpec.IntValue SHULKER_SPAWN_GROUP_MAX;
     final ForgeConfigSpec.BooleanValue RABBIT_SPAWN;
+    private static final String SUBCATEGORY_RABBIT= "rabbit";
+    final ForgeConfigSpec.IntValue RABBIT_SPAWN_WEIGHT;
+    final ForgeConfigSpec.IntValue RABBIT_SPAWN_GROUP_MIN;
+    final ForgeConfigSpec.IntValue RABBIT_SPAWN_GROUP_MAX;
     final ForgeConfigSpec.BooleanValue CHICKEN_FEATHER;
     final ForgeConfigSpec.BooleanValue PIG_RABBIT_LITTER;
     final ForgeConfigSpec.BooleanValue EXTRA_STAIRS;
@@ -41,10 +49,26 @@ final class ServerConfig {
 
     ServerConfig(final ForgeConfigSpec.Builder builder) {
         builder.push(CATEGORY_TWEAKS);
+        builder.push(SUBCATEGORY_SHULKER);
         SHULKER_SPAWN = builder.comment("Allow shulkers to re-spawn in end city structures")
                 .define("Enable Shulkers Respawn", true);
+        SHULKER_SPAWN_WEIGHT = builder.comment("Weight for Shulker Spawns")
+                .defineInRange("Shulker Weight", 1, 0, 100);
+        SHULKER_SPAWN_GROUP_MIN = builder.comment("Minimum Group Size for Shulker Spawns")
+                .defineInRange("Shulker Group Min", 1, 0, Integer.MAX_VALUE);
+        SHULKER_SPAWN_GROUP_MAX = builder.comment("Maximum Group Size for Shulker Spawns")
+                .defineInRange("Shulkder Group Max", 1, 0, Integer.MAX_VALUE);
+        builder.pop();
+        builder.push(SUBCATEGORY_RABBIT);
         RABBIT_SPAWN = builder.comment("Allow rabbits to spawn in biomes tagged with FOREST")
                 .define("Enable Rabbits Spawn in Forest", true);
+        RABBIT_SPAWN_WEIGHT = builder.comment("Weight for Rabbit Spawns")
+                .defineInRange("Rabbit Weight", 1, 0, 100);
+        RABBIT_SPAWN_GROUP_MIN = builder.comment("Minimum Group Size for Rabbit Spawns")
+                .defineInRange("Rabbit Group Min", 1, 0, Integer.MAX_VALUE);
+        RABBIT_SPAWN_GROUP_MAX = builder.comment("Maximum Group Size for Rabbit Spawns")
+                .defineInRange("Rabbit Group Max", 3, 0, Integer.MAX_VALUE);
+        builder.pop();
         CHICKEN_FEATHER = builder.comment("Allow chickens to drop feathers randomly")
                 .define("Enable Chickens Drop Feather", true);
         PIG_RABBIT_LITTER = builder.comment("Allow Pigs and Rabbits to Make up to 4 Babies at A Time")
@@ -64,6 +88,7 @@ final class ServerConfig {
                 .define("Enable Sandy Desert", true);
         SANDY_MESA = builder.comment("Enable Terracotta/Red Standstone Cave Walls in Biomes Tagged with MESA")
                 .define("Enable Sandy Mesa", true);
+        builder.pop();
 
         builder.push(CATEGORY_BLOCKS);
         builder.push(SUBCATEGORY_NETHER_GOLD_ORE);
