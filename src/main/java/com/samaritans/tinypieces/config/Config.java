@@ -19,6 +19,7 @@ public class Config {
     public static int cave_spider_spawn_group_max;
     public static boolean chicken_feather;
     public static boolean pig_rabbit_litter;
+    public static boolean pet;
     public static boolean extra_stairs;
     public static boolean bonemeal_stone;
     public static boolean bonemeal_flower;

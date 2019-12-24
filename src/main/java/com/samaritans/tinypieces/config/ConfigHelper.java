@@ -27,6 +27,7 @@ public class ConfigHelper {
         Config.cave_spider_spawn_group_max = ConfigHolder.SERVER.CAVE_SPIDER_SPAWN_GROUP_MAX.get();
         Config.chicken_feather = ConfigHolder.SERVER.CHICKEN_FEATHER.get();
         Config.pig_rabbit_litter = ConfigHolder.SERVER.PIG_RABBIT_LITTER.get();
+        Config.pet = ConfigHolder.SERVER.PET.get();
         Config.extra_stairs = ConfigHolder.SERVER.EXTRA_STAIRS.get();
         Config.bonemeal_stone = ConfigHolder.SERVER.BONEMEAL_STONE.get();
         Config.bonemeal_flower = ConfigHolder.SERVER.BONEMEAL_FLOWER.get();

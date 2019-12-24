@@ -4,20 +4,16 @@ import com.samaritans.tinypieces.config.Config;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.passive.PigEntity;
-import net.minecraft.entity.passive.RabbitEntity;
+import net.minecraft.entity.*;
+import net.minecraft.entity.passive.*;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShearsItem;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -157,6 +153,18 @@ public class ModEventHandlers {
             int y = pos.getY();
             int z = pos.getZ();
             InventoryHelper.spawnItemStack(event.getWorld().getWorld(), x, y, z, new ItemStack(event.getState().getBlock()));
+        }
+    }
+
+    @SubscribeEvent
+    public static void pet(PlayerInteractEvent.EntityInteract event) {
+        if (Config.pet && event.getHand() == Hand.MAIN_HAND && event.getPlayer().getHeldItem(Hand.MAIN_HAND).isEmpty() && event.getPlayer().isSneaking() && event.getTarget() instanceof TameableEntity && ((TameableEntity) event.getTarget()).isTamed()) {
+            TameableEntity entity = (TameableEntity) event.getTarget();
+            for (int i = 0; i < 16; ++i)
+                event.getWorld().addParticle(ParticleTypes.HEART, entity.posX + (double)(entity.getRNG().nextFloat() * entity.getWidth() * 2.0F) - (double)entity.getWidth(), entity.posY + 0.5D + (double)(entity.getRNG().nextFloat() * entity.getHeight()), entity.posZ + (double)(entity.getRNG().nextFloat() * entity.getWidth() * 2.0F) - (double)entity.getWidth(), 0.0D, 0.0D, 0.0D);
+            entity.playAmbientSound();
+            event.setCanceled(true);
+            event.setCancellationResult(ActionResultType.SUCCESS);
         }
     }
 }

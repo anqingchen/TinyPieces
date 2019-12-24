@@ -21,6 +21,7 @@ final class ServerConfig {
     final ForgeConfigSpec.IntValue CAVE_SPIDER_SPAWN_GROUP_MAX;
     final ForgeConfigSpec.BooleanValue CHICKEN_FEATHER;
     final ForgeConfigSpec.BooleanValue PIG_RABBIT_LITTER;
+    final ForgeConfigSpec.BooleanValue PET;
     final ForgeConfigSpec.BooleanValue EXTRA_STAIRS;
     final ForgeConfigSpec.BooleanValue BONEMEAL_STONE;
     final ForgeConfigSpec.BooleanValue BONEMEAL_FLOWER;
@@ -91,6 +92,8 @@ final class ServerConfig {
                 .define("Enable Chickens Drop Feather", true);
         PIG_RABBIT_LITTER = builder.comment("Allow Pigs and Rabbits to Make up to 4 Babies at A Time")
                 .define("Enable Pig/Rabbit Litter", true);
+        PET = builder.comment("Allow Crouch + Right Click to Pet Your Pets! (Might Have Incompatibility With Other Mods, Disable If Needed")
+                .define("Enable Petting", true);
         EXTRA_STAIRS = builder.comment("Craft 8 wooden stairs instead of 4")
                 .define("Enable Extra Stairs", true);
         BONEMEAL_STONE = builder.comment("Allow Stone/Cobblestone/Stone Bricks to Be Bonemealed for Mossy Versions")
