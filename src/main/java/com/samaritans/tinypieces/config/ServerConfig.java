@@ -9,11 +9,16 @@ final class ServerConfig {
     final ForgeConfigSpec.IntValue SHULKER_SPAWN_WEIGHT;
     final ForgeConfigSpec.IntValue SHULKER_SPAWN_GROUP_MIN;
     final ForgeConfigSpec.IntValue SHULKER_SPAWN_GROUP_MAX;
-    final ForgeConfigSpec.BooleanValue RABBIT_SPAWN;
     private static final String SUBCATEGORY_RABBIT= "rabbit";
+    final ForgeConfigSpec.BooleanValue RABBIT_SPAWN;
     final ForgeConfigSpec.IntValue RABBIT_SPAWN_WEIGHT;
     final ForgeConfigSpec.IntValue RABBIT_SPAWN_GROUP_MIN;
     final ForgeConfigSpec.IntValue RABBIT_SPAWN_GROUP_MAX;
+    private static final String SUBCATEGORY_CAVE_SPIDER = "cave_spider";
+    final ForgeConfigSpec.BooleanValue CAVE_SPIDER_SPAWN;
+    final ForgeConfigSpec.IntValue CAVE_SPIDER_WEIGHT;
+    final ForgeConfigSpec.IntValue CAVE_SPIDER_SPAWN_GROUP_MIN;
+    final ForgeConfigSpec.IntValue CAVE_SPIDER_SPAWN_GROUP_MAX;
     final ForgeConfigSpec.BooleanValue CHICKEN_FEATHER;
     final ForgeConfigSpec.BooleanValue PIG_RABBIT_LITTER;
     final ForgeConfigSpec.BooleanValue EXTRA_STAIRS;
@@ -50,7 +55,7 @@ final class ServerConfig {
     ServerConfig(final ForgeConfigSpec.Builder builder) {
         builder.push(CATEGORY_TWEAKS);
         builder.push(SUBCATEGORY_SHULKER);
-        SHULKER_SPAWN = builder.comment("Allow shulkers to re-spawn in end city structures")
+        SHULKER_SPAWN = builder.comment("Allow Shulkers to Re-spawn in End City Structures")
                 .define("Enable Shulkers Respawn", true);
         SHULKER_SPAWN_WEIGHT = builder.comment("Weight for Shulker Spawns")
                 .defineInRange("Shulker Weight", 1, 0, 100);
@@ -60,14 +65,24 @@ final class ServerConfig {
                 .defineInRange("Shulkder Group Max", 1, 0, Integer.MAX_VALUE);
         builder.pop();
         builder.push(SUBCATEGORY_RABBIT);
-        RABBIT_SPAWN = builder.comment("Allow rabbits to spawn in biomes tagged with FOREST")
+        RABBIT_SPAWN = builder.comment("Allow Rabbits to Spawn in Biomes Tagged With FOREST")
                 .define("Enable Rabbits Spawn in Forest", true);
         RABBIT_SPAWN_WEIGHT = builder.comment("Weight for Rabbit Spawns")
-                .defineInRange("Rabbit Weight", 1, 0, 100);
+                .defineInRange("Rabbit Weight", 80, 0, 100);
         RABBIT_SPAWN_GROUP_MIN = builder.comment("Minimum Group Size for Rabbit Spawns")
                 .defineInRange("Rabbit Group Min", 1, 0, Integer.MAX_VALUE);
         RABBIT_SPAWN_GROUP_MAX = builder.comment("Maximum Group Size for Rabbit Spawns")
-                .defineInRange("Rabbit Group Max", 3, 0, Integer.MAX_VALUE);
+                .defineInRange("Rabbit Group Max", 4, 0, Integer.MAX_VALUE);
+        builder.pop();
+        builder.push(SUBCATEGORY_CAVE_SPIDER);
+        CAVE_SPIDER_SPAWN = builder.comment("Allow Cave Spiders to Spawn in Caves in Biomes Tagged With FOREST and JUNGLE")
+                .define("Enable Cave Spider Spawn in FOREST and JUNGLE Caves", true);
+        CAVE_SPIDER_WEIGHT = builder.comment("Weight for Cave Spider Spawns")
+                .defineInRange("Cave Spider Weight", 40, 0, 100);
+        CAVE_SPIDER_SPAWN_GROUP_MIN = builder.comment("Minimum Group Size for Cave Spider Spawns")
+                .defineInRange("Cave Spider Group Min", 1, 0, Integer.MAX_VALUE);
+        CAVE_SPIDER_SPAWN_GROUP_MAX = builder.comment("Maximum Group Size for Cave Spider Spawns")
+                .defineInRange("Cave Spider Group Max", 3, 0, Integer.MAX_VALUE);
         builder.pop();
         CHICKEN_FEATHER = builder.comment("Allow chickens to drop feathers randomly")
                 .define("Enable Chickens Drop Feather", true);
@@ -109,7 +124,7 @@ final class ServerConfig {
         QUARTZ_ORE_CHANCE = builder.comment("Chance for Quartz Ore to Generate")
                 .defineInRange("Quartz Ore Chance", 6, 0, 100);
         QUARTZ_ORE_SIZE = builder.comment("Set Cluster Size of Quartz Ores")
-                .defineInRange("Quartz Ore Cluster Size", 14, 0, Integer.MAX_VALUE);
+                .defineInRange("Quartz Ore Cluster Size", 9, 0, Integer.MAX_VALUE);
         QUARTZ_ORE_HEIGHT_MIN = builder.comment("Set Minimum Y-Level of Quartz Ores")
                 .defineInRange("Quartz Ore Min Height", 0, 0, 127);
         QUARTZ_ORE_HEIGHT_MAX = builder.comment("Set Maximum Y-Level of Quartz Ores")

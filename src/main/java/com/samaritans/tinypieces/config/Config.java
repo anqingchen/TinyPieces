@@ -13,6 +13,10 @@ public class Config {
     public static int rabbit_weight;
     public static int rabbit_group_min;
     public static int rabbit_group_max;
+    public static boolean cave_spider_spawn;
+    public static int cave_spider_weight;
+    public static int cave_spider_spawn_group_min;
+    public static int cave_spider_spawn_group_max;
     public static boolean chicken_feather;
     public static boolean pig_rabbit_litter;
     public static boolean extra_stairs;

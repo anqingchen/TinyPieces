@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.AgeableEntity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -23,6 +24,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -30,7 +32,6 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ModEventHandlers {
-    private static final Biome.SpawnListEntry rabbit = new Biome.SpawnListEntry(EntityType.RABBIT, Config.rabbit_weight, Config.rabbit_group_min, Config.rabbit_group_max);
     private static final Biome.SpawnListEntry shulker = new Biome.SpawnListEntry(EntityType.SHULKER, Config.shulker_weight, Config.shulker_group_min, Config.shulker_group_max);
     private static final Biome.SpawnListEntry caveSpider = new Biome.SpawnListEntry(EntityType.CAVE_SPIDER, 40, 1, 3);
 
@@ -71,7 +72,7 @@ public class ModEventHandlers {
                 event.getPlayer().canPlayerEdit(event.getPos(), event.getFace(), event.getItemStack())) {
             Block target = event.getWorld().getBlockState(event.getPos()).getBlock();
             if (target instanceof FlowerBlock) {
-                // todo: random flower apperance somehow
+                // todo: random flower appearance somehow
                 if (!event.getPlayer().isCreative()) event.getItemStack().shrink(1);
             }
         }
@@ -105,24 +106,22 @@ public class ModEventHandlers {
 
     @SubscribeEvent
     public static void shulkerSpawn(WorldEvent.PotentialSpawns event) {
-        if (!event.getWorld().isRemote() && Config.shulker_spawn && event.getWorld().getDimension().getType() == DimensionType.THE_END && Feature.END_CITY.isPositionInsideStructure(event.getWorld(), event.getPos())) {
+        if (!event.getWorld().isRemote() && Config.shulker_spawn && event.getType() == EntityClassification.MONSTER && event.getWorld().getDimension().getType() == DimensionType.THE_END && Feature.END_CITY.isPositionInsideStructure(event.getWorld(), event.getPos())) {
             event.getList().add(shulker);
         }
     }
 
     @SubscribeEvent
-    public static void rabbitSpawn(WorldEvent.PotentialSpawns event) {
-        if (!event.getWorld().isRemote() && Config.rabbit_spawn && BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST)) {
-            event.getList().add(rabbit);
+    public static void caveSpiderSpawn(WorldEvent.PotentialSpawns event) {
+        if (!event.getWorld().isRemote() && Config.cave_spider_spawn && event.getType() == EntityClassification.MONSTER &&
+                (BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST) || BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.JUNGLE)) &&
+                event.getPos().getY() < 45) {
+            event.getList().add(caveSpider);
         }
     }
 
     @SubscribeEvent
-    public static void caveSpiderSpawn(WorldEvent.PotentialSpawns event) {
-        if (!event.getWorld().isRemote() &&
-                (BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.FOREST) || BiomeDictionary.hasType(event.getWorld().getBiome(event.getPos()), BiomeDictionary.Type.JUNGLE)) &&
-                event.getPos().getY() < 50) {
-            event.getList().add(caveSpider);
-        }
+    public static void generatePuddles(TickEvent.WorldTickEvent event) {
+
     }
 }

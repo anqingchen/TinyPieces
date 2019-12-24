@@ -10,9 +10,13 @@ import com.samaritans.tinypieces.core.ModEventHandlers;
 import com.samaritans.tinypieces.world.CaveGeneration;
 import com.samaritans.tinypieces.world.OreGeneration;
 import com.samaritans.tinypieces.world.feature.ModFeature;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,12 +24,10 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.event.lifecycle.*;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,6 +55,8 @@ public class TinyPieces {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        // Register rabbit spawns
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerSpawns);
 
         // Register the Config files
         final ModLoadingContext modLoadingContext = ModLoadingContext.get();
@@ -94,6 +98,15 @@ public class TinyPieces {
 //        LOGGER.info("Got IMC {}", event.getIMCStream().
 //                map(m -> m.getMessageSupplier().get()).
 //                collect(Collectors.toList()));
+    }
+
+    private void registerSpawns(final FMLLoadCompleteEvent event) {
+        for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
+            if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST)) {
+                if (Config.rabbit_spawn)
+                    biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityType.RABBIT, Config.rabbit_weight, Config.rabbit_group_min, Config.rabbit_group_max));
+            }
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
