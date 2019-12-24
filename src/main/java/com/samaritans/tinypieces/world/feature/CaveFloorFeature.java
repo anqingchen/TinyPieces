@@ -1,7 +1,7 @@
 package com.samaritans.tinypieces.world.feature;
 
 import com.mojang.datafixers.Dynamic;
-import com.samaritans.tinypieces.blocks.ThinBlock;
+import com.samaritans.tinypieces.block.ThinBlock;
 import com.samaritans.tinypieces.core.ModBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;

@@ -1,5 +1,6 @@
-package com.samaritans.tinypieces.blocks;
+package com.samaritans.tinypieces.block;
 
+import com.samaritans.tinypieces.core.ModParticles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EndRodBlock;
@@ -29,7 +30,7 @@ public class NetherRodBlock extends EndRodBlock {
         double posZ = (double)pos.getZ() + 0.55D - (double)(rand.nextFloat() * 0.1F);
         double mult = (double)(0.4F - (rand.nextFloat() + rand.nextFloat()) * 0.4F);
         if (rand.nextInt(5) == 0) {
-            world.addParticle(ParticleTypes.FLAME, posX + (double)lvt_5_1_.getXOffset() * mult, posY + (double)lvt_5_1_.getYOffset() * mult, posZ + (double)lvt_5_1_.getZOffset() * mult, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D);
+            world.addParticle(ModParticles.NETHER_ROD, posX + (double)lvt_5_1_.getXOffset() * mult, posY + (double)lvt_5_1_.getYOffset() * mult, posZ + (double)lvt_5_1_.getZOffset() * mult, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D, rand.nextGaussian() * 0.005D);
         }
     }
 }

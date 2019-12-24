@@ -1,4 +1,4 @@
-package com.samaritans.tinypieces.blocks;
+package com.samaritans.tinypieces.block;
 
 import com.samaritans.tinypieces.core.ModBlocks;
 import net.minecraft.block.Block;
