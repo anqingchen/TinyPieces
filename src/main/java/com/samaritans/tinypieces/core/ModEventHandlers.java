@@ -1,10 +1,9 @@
 package com.samaritans.tinypieces.core;
 
 import com.samaritans.tinypieces.config.Config;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowerBlock;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -16,20 +15,24 @@ import net.minecraft.entity.passive.RabbitEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.Random;
 
 public class ModEventHandlers {
     private static final Biome.SpawnListEntry shulker = new Biome.SpawnListEntry(EntityType.SHULKER, Config.shulker_weight, Config.shulker_group_min, Config.shulker_group_max);
@@ -51,7 +54,7 @@ public class ModEventHandlers {
 
     @SubscribeEvent
     public static void onBoneMealStone(PlayerInteractEvent.RightClickBlock event) {
-        if (!event.getWorld().isRemote && event.getItemStack().getItem() == Items.BONE_MEAL &&
+        if (Config.bonemeal_stone && event.getItemStack().getItem() == Items.BONE_MEAL &&
                 event.getPlayer().canPlayerEdit(event.getPos(), event.getFace(), event.getItemStack())) {
             Block target = event.getWorld().getBlockState(event.getPos()).getBlock();
             boolean flag = true;
@@ -68,12 +71,37 @@ public class ModEventHandlers {
 
     @SubscribeEvent
     public static void onBoneMealFlower(PlayerInteractEvent.RightClickBlock event) {
-        if (!event.getWorld().isRemote && event.getItemStack().getItem() == Items.BONE_MEAL &&
+        if (Config.bonemeal_flower && event.getItemStack().getItem() == Items.BONE_MEAL &&
                 event.getPlayer().canPlayerEdit(event.getPos(), event.getFace(), event.getItemStack())) {
             Block target = event.getWorld().getBlockState(event.getPos()).getBlock();
             if (target instanceof FlowerBlock) {
-                // todo: random flower appearance somehow
+                BlockPos blockpos = event.getPos();
+                World worldIn = event.getWorld();
+                Random rand = event.getPlayer().getRNG();
+                BlockState blockstate = worldIn.getBlockState(blockpos.down());
+
+                for(int i = 0; i < 32; ++i) {
+                    BlockPos blockpos1 = blockpos;
+                    int j = 0;
+                    while(true) {
+                        if (j >= i / 16) {
+                            BlockState blockstate1;
+                            blockstate1 = worldIn.getBlockState(blockpos);
+                            if (blockstate1.isValidPosition(worldIn, blockpos1)) {
+                                worldIn.setBlockState(blockpos1, blockstate1, 3);
+                            }
+                            break;
+                        }
+                        blockpos1 = blockpos1.add(rand.nextInt(4) - 1, (rand.nextInt(4) - 1) * rand.nextInt(4) / 2, rand.nextInt(4) - 1);
+                        if (worldIn.getBlockState(blockpos1.down()) != blockstate || worldIn.getBlockState(blockpos1).func_224756_o(worldIn, blockpos1)) {
+                            break;
+                        }
+                        ++j;
+                    }
+                }
                 if (!event.getPlayer().isCreative()) event.getItemStack().shrink(1);
+                worldIn.playEvent(2005, blockpos, 0);
+                event.getPlayer().swingArm(event.getHand());
             }
         }
     }
@@ -121,7 +149,14 @@ public class ModEventHandlers {
     }
 
     @SubscribeEvent
-    public static void generatePuddles(TickEvent.WorldTickEvent event) {
-
+    public static void getCake(BlockEvent.BreakEvent event) {
+        if (!event.getWorld().isRemote() && Config.pickup_cake && event.getState().getBlock() == Blocks.CAKE && event.getState().get(CakeBlock.BITES) == 0 &&
+                (EnchantmentHelper.getEnchantments(event.getPlayer().getHeldItem(Hand.MAIN_HAND)).containsKey(Enchantments.SILK_TOUCH) || event.getPlayer().getHeldItem(Hand.MAIN_HAND).getItem() instanceof ShearsItem)) {
+            BlockPos pos = event.getPos();
+            int x = pos.getX();
+            int y = pos.getY();
+            int z = pos.getZ();
+            InventoryHelper.spawnItemStack(event.getWorld().getWorld(), x, y, z, new ItemStack(event.getState().getBlock()));
+        }
     }
 }
