@@ -30,6 +30,7 @@ final class ServerConfig {
     private static final String CATEGORY_WORLD = "world";
     final ForgeConfigSpec.BooleanValue MOSSY_FOREST;
     final ForgeConfigSpec.BooleanValue MOSSY_JUNGLE;
+    final ForgeConfigSpec.BooleanValue WET_OCEAN;
     final ForgeConfigSpec.BooleanValue ICY_SNOW;
     final ForgeConfigSpec.BooleanValue SANDY_DESERT;
     final ForgeConfigSpec.BooleanValue SANDY_MESA;
@@ -109,6 +110,8 @@ final class ServerConfig {
                 .define("Enable Mossy Forest", true);
         MOSSY_JUNGLE = builder.comment("Enable Mossy Stone/Cobblestone and Vines to Generate in Caves in Biomes Tagged with JUNGLE")
                 .define("Enable Mossy Jungle", true);
+        WET_OCEAN = builder.comment("Enable Mossy Stone/Cobblestone, Dead Corals and Water Puddles to Generate in Caves in Biomes Tagged with OCEAN")
+                .define("Enable Wet Ocean", true);
         ICY_SNOW = builder.comment("Enable Packed Ice/Blue Ice Clusters and Ice Glaze to Generate in Caves in Biomes Tagged with SNOWY")
                 .define("Enable Icy Snow", true);
         SANDY_DESERT = builder.comment("Enable Sandstone/Chiseled Sandstone Caves Walls in Biomes Tagged with SANDY")

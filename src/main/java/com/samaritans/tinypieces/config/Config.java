@@ -27,6 +27,7 @@ public class Config {
 
     public static boolean mossy_forest;
     public static boolean mossy_jungle;
+    public static boolean wet_ocean;
     public static boolean icy_snow;
     public static boolean sandy_desert;
     public static boolean sandy_mesa;

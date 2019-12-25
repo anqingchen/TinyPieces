@@ -22,11 +22,11 @@ public class CaveGeneration {
                         Biome.createDecoratedFeature(ModFeature.CAVE_WALL,
                                 new ReplaceBlockConfig(Blocks.MOSSY_COBBLESTONE.getDefaultState(), Config.mossy_stone ? ModBlocks.mossy_stone.getDefaultState() : Blocks.MOSSY_COBBLESTONE.getDefaultState()),
                                 Placement.COUNT_RANGE,
-                                new CountRangeConfig(2048, 30, 0, 80)));
+                                new CountRangeConfig(2048, 30, 0, 64)));
             }
             if (Config.mossy_jungle && BiomeDictionary.hasType(biome, BiomeDictionary.Type.JUNGLE)) {
                 biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-                        Biome.createDecoratedFeature(ModFeature.JUNGLE_CAVE_VINES,
+                        Biome.createDecoratedFeature(ModFeature.CAVE_VINES,
                                 IFeatureConfig.NO_FEATURE_CONFIG,
                                 Placement.COUNT_RANGE,
                                 new CountRangeConfig(25, 0, 0, 64)));
@@ -45,12 +45,22 @@ public class CaveGeneration {
                                 Placement.COUNT_RANGE,
                                 new CountRangeConfig(8, 0, 0, 64)));
             }
-            if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OCEAN)) {
+            if (Config.wet_ocean && BiomeDictionary.hasType(biome, BiomeDictionary.Type.OCEAN)) {
                 biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
                         Biome.createDecoratedFeature(ModFeature.WATER_PUDDLE_FLOOR,
                                 IFeatureConfig.NO_FEATURE_CONFIG,
                                 Placement.COUNT_RANGE,
                                 new CountRangeConfig(10, 0, 0, 64)));
+                biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
+                        Biome.createDecoratedFeature(ModFeature.CAVE_WALL,
+                                new ReplaceBlockConfig(Blocks.MOSSY_COBBLESTONE.getDefaultState(), Config.mossy_stone ? ModBlocks.mossy_stone.getDefaultState() : Blocks.MOSSY_COBBLESTONE.getDefaultState()),
+                                Placement.COUNT_RANGE,
+                                new CountRangeConfig(2048, 30, 0, 64)));
+                biome.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
+                        Biome.createDecoratedFeature(ModFeature.CAVE_DEAD_CORAL,
+                                IFeatureConfig.NO_FEATURE_CONFIG,
+                                Placement.COUNT_RANGE,
+                                new CountRangeConfig(100, 0, 0, 64)));
             }
             if (Config.sandy_mesa && BiomeDictionary.hasType(biome, BiomeDictionary.Type.MESA)) {
                 biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,

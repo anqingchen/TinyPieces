@@ -14,8 +14,8 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 import java.util.Random;
 import java.util.function.Function;
 
-public class JungleCaveVinesFeature extends Feature<NoFeatureConfig> {
-    public JungleCaveVinesFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
+public class CaveVinesFeature extends Feature<NoFeatureConfig> {
+    public CaveVinesFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
         super(configFactoryIn);
     }
 

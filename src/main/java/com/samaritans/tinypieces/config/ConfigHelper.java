@@ -35,6 +35,7 @@ public class ConfigHelper {
 
         Config.mossy_forest = ConfigHolder.SERVER.MOSSY_FOREST.get();
         Config.mossy_jungle = ConfigHolder.SERVER.MOSSY_JUNGLE.get();
+        Config.wet_ocean = ConfigHolder.SERVER.WET_OCEAN.get();
         Config.icy_snow = ConfigHolder.SERVER.ICY_SNOW.get();
         Config.sandy_desert = ConfigHolder.SERVER.SANDY_DESERT.get();
         Config.sandy_mesa = ConfigHolder.SERVER.SANDY_MESA.get();
