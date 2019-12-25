@@ -6,6 +6,7 @@ import com.samaritans.tinypieces.world.feature.ModFeature;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.ReplaceBlockConfig;
@@ -61,6 +62,11 @@ public class CaveGeneration {
                                 IFeatureConfig.NO_FEATURE_CONFIG,
                                 Placement.COUNT_RANGE,
                                 new CountRangeConfig(100, 0, 0, 64)));
+                GenerationHelper.addOreGentoBiome(biome, OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DEAD_BRAIN_CORAL_BLOCK.getDefaultState(), 16, 1, 0, 40);
+                GenerationHelper.addOreGentoBiome(biome, OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DEAD_BUBBLE_CORAL_BLOCK.getDefaultState(), 16, 1, 0, 40);
+                GenerationHelper.addOreGentoBiome(biome, OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DEAD_FIRE_CORAL_BLOCK.getDefaultState(), 16, 1, 0, 40);
+                GenerationHelper.addOreGentoBiome(biome, OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DEAD_HORN_CORAL_BLOCK.getDefaultState(), 16, 1, 0, 40);
+                GenerationHelper.addOreGentoBiome(biome, OreFeatureConfig.FillerBlockType.NATURAL_STONE, Blocks.DEAD_TUBE_CORAL_BLOCK.getDefaultState(), 16, 1, 0, 40);
             }
             if (Config.sandy_mesa && BiomeDictionary.hasType(biome, BiomeDictionary.Type.MESA)) {
                 biome.addFeature(GenerationStage.Decoration.UNDERGROUND_DECORATION,
