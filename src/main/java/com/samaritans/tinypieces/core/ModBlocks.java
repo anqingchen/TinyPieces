@@ -3,7 +3,7 @@ package com.samaritans.tinypieces.core;
 import com.samaritans.tinypieces.TinyPieces;
 import com.samaritans.tinypieces.block.NetherRodBlock;
 import com.samaritans.tinypieces.block.ThinBlock;
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
@@ -23,15 +23,29 @@ public class ModBlocks {
     public static final Block quartz_ore = null;
     public static final Block nether_rod = null;
     public static final Block red_nether_rod = null;
+    public static final Block charred_nether_rod = null;
     public static final Block mossy_stone = null;
     public static final Block ice_glaze = null;
     public static final Block water_puddle = null;
+    public static final Block charred_nether_brick = null;
+    public static final Block charred_nether_brick_wall = null;
+    public static final Block charred_nether_brick_slab = null;
+    public static final Block charred_nether_brick_stairs = null;
+    public static final Block charred_nether_brick_fence = null;
+    public static final Block red_nether_brick_fence = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(
                 Util.setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5).harvestLevel(2).harvestTool(ToolType.PICKAXE)), "nether_gold_ore"),
                 Util.setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5).harvestLevel(2).harvestTool(ToolType.PICKAXE)), "quartz_ore"),
+                Util.setup(new Block(Block.Properties.from(Blocks.NETHER_BRICKS)), "charred_nether_brick"),
+                Util.setup(new WallBlock(Block.Properties.from(Blocks.NETHER_BRICK_WALL)), "charred_nether_brick_wall"),
+                Util.setup(new SlabBlock(Block.Properties.from(Blocks.NETHER_BRICK_SLAB)), "charred_nether_brick_slab"),
+                Util.setup(new StairsBlock(() -> ModBlocks.charred_nether_brick_stairs.getDefaultState(), Block.Properties.from(Blocks.NETHER_BRICK_STAIRS)), "charred_nether_brick_stairs"),
+                Util.setup(new FenceBlock(Block.Properties.from(Blocks.NETHER_BRICK_FENCE)), "charred_nether_brick_fence"),
+                Util.setup(new FenceBlock(Block.Properties.from(Blocks.NETHER_BRICK_FENCE)), "red_nether_brick_fence"),
+                Util.setup(new NetherRodBlock(), "charred_nether_rod"),
                 Util.setup(new NetherRodBlock(), "nether_rod"),
                 Util.setup(new NetherRodBlock(), "red_nether_rod"),
                 Util.setup(new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(5).harvestLevel(1).harvestTool(ToolType.PICKAXE)), "mossy_stone"),

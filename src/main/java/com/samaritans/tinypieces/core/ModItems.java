@@ -12,11 +12,13 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(TinyPieces.MODID)
 public class ModItems {
     public static final Item cooked_egg = null;
+    public static final Item wither_bone = null;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(
-                Util.setup(new Item(new Item.Properties().food(new Food.Builder().fastToEat().hunger(6).saturation(10).build()).group(TinyPieces.TAB)), "cooked_egg")
+                Util.setup(new Item(new Item.Properties().food(new Food.Builder().fastToEat().hunger(6).saturation(10).build()).group(TinyPieces.TAB)), "cooked_egg"),
+                Util.setup(new Item(new Item.Properties().group(TinyPieces.TAB)), "wither_bone")
         );
     }
 }

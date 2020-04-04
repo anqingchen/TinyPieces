@@ -6,14 +6,13 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.ShearsItem;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -22,6 +21,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -104,7 +104,7 @@ public class ModEventHandlers {
     }
 
     @SubscribeEvent
-    public static void onBreedPigorRabbit(BabyEntitySpawnEvent event) {
+    public static void onBreedPigsorRabbits(BabyEntitySpawnEvent event) {
         if (!event.getParentA().world.isRemote && Config.pig_rabbit_litter && (event.getParentA() instanceof PigEntity || event.getParentA() instanceof RabbitEntity)) {
             int amount = event.getParentA().getRNG().nextInt(4);
             for (int i = 0; i < amount; ++i) {
@@ -158,14 +158,14 @@ public class ModEventHandlers {
     }
 
     @SubscribeEvent
-    public static void pet(PlayerInteractEvent.EntityInteract event) {
-        if (Config.pet && event.getHand() == Hand.MAIN_HAND && event.getPlayer().getHeldItem(Hand.MAIN_HAND).isEmpty() && event.getPlayer().isSneaking() && event.getTarget() instanceof TameableEntity && ((TameableEntity) event.getTarget()).isTamed()) {
-            TameableEntity entity = (TameableEntity) event.getTarget();
-            for (int i = 0; i < 16; ++i)
-                event.getWorld().addParticle(ParticleTypes.HEART, entity.posX + (double)(entity.getRNG().nextFloat() * entity.getWidth() * 2.0F) - (double)entity.getWidth(), entity.posY + 0.5D + (double)(entity.getRNG().nextFloat() * entity.getHeight()), entity.posZ + (double)(entity.getRNG().nextFloat() * entity.getWidth() * 2.0F) - (double)entity.getWidth(), 0.0D, 0.0D, 0.0D);
-            entity.playAmbientSound();
-            event.setCanceled(true);
-            event.setCancellationResult(ActionResultType.SUCCESS);
+    public static void deathByWither(LivingDeathEvent event) {
+        World world = event.getEntityLiving().world;
+        if (!world.isRemote && event.getEntityLiving() instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) event.getEntityLiving();
+            Entity witherSkeleton = EntityType.WITHER_SKELETON.create(world);
+            witherSkeleton.setPosition(player.posX, player.posY, player.posZ);
+            witherSkeleton.setCustomName(player.getDisplayName());
+            world.addEntity(witherSkeleton);
         }
     }
 }
