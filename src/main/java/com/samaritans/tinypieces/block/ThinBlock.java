@@ -89,10 +89,10 @@ public class ThinBlock extends Block {
 
     @Override
     public boolean isValidPosition(BlockState blockState, IWorldReader worldIn, BlockPos pos) {
-        return func_220055_a(worldIn, pos.down(), Direction.UP);
+        return true;//is(worldIn, pos.down(), Direction.UP);
     }
 
     public static boolean canPlaceOn(BlockState blockState, IWorldReader world, BlockPos pos) {
-        return func_220055_a(world, pos.down(), Direction.UP);
+        return true;//func_220055_a(world, pos.down(), Direction.UP); todo
     }
 }

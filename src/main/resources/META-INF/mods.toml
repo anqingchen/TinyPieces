@@ -6,7 +6,7 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[28,)" #mandatory (28 is current forge version)
+loaderVersion="[31,)" #mandatory (28 is current forge version)
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://github.com/anqingchen/TinyPieces/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
@@ -26,10 +26,10 @@ logoFile="tp_logo.png" #optional
 # A text field displayed in the mod UI
 # credits="Thanks for this example mod goes to Java" #optional
 # A text field displayed in the mod UI
-authors="Samaritans and Cybercat5555" #optional
+authors="Samaritans and Cybercat5555, also Aelpecyem" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-TinyPieces is a small vanilla+ mod for 1.14.4 forge. It adds just a few blocks, items, and tweaks that vanilla is missing or is too stupid to do. Does not go over-the-top and isn’t trying to be another Quark. All most all features simply make use of pre-existing items or blocks, with nothing really “radical” added.
+TinyPieces is a small vanilla+ mod for 1.15.2 forge. It adds just a few blocks, items, and tweaks that vanilla is missing or is too stupid to do. Does not go over-the-top and isn’t trying to be another Quark. All most all features simply make use of pre-existing items or blocks, with nothing really “radical” added.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.tinypieces]] #optional
@@ -38,7 +38,7 @@ TinyPieces is a small vanilla+ mod for 1.14.4 forge. It adds just a few blocks, 
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[28,)" #mandatory
+    versionRange="[31,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -47,6 +47,6 @@ TinyPieces is a small vanilla+ mod for 1.14.4 forge. It adds just a few blocks, 
 [[dependencies.tinypieces]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.15.2]"
     ordering="NONE"
     side="BOTH"
