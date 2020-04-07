@@ -34,10 +34,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(TinyPieces.MODID)
 public class TinyPieces {
-    // Directly reference a log4j logger.
     public static final Logger LOGGER = LogManager.getLogger();
 
     public static final String MODID = "tinypieces";
@@ -52,10 +50,6 @@ public class TinyPieces {
     public TinyPieces() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the enqueueIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         // Register rabbit spawns
@@ -86,23 +80,8 @@ public class TinyPieces {
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         ModColorManager.registerColourHandlers();
-        RenderTypeLookup.setRenderLayer(ModBlocks.ice_glaze, RenderType.getTranslucent()); //might create a separate proxy for this stuff if it gets weird
+        RenderTypeLookup.setRenderLayer(ModBlocks.ice_glaze, RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(ModBlocks.water_puddle, RenderType.getTranslucent());
-    }
-
-    private void enqueueIMC(final InterModEnqueueEvent event) {
-        // some example code to dispatch IMC to another mod
-//        InterModComms.sendTo("examplemod", "helloworld", () -> {
-//            LOGGER.info("Hello world from the MDK");
-//            return "Hello world";
-//        });
-    }
-
-    private void processIMC(final InterModProcessEvent event) {
-        // some example code to receive and process InterModComms from other mods
-//        LOGGER.info("Got IMC {}", event.getIMCStream().
-//                map(m -> m.getMessageSupplier().get()).
-//                collect(Collectors.toList()));
     }
 
     private void registerSpawns(final FMLLoadCompleteEvent event) {
@@ -112,11 +91,5 @@ public class TinyPieces {
                     biome.getSpawns(EntityClassification.CREATURE).add(new Biome.SpawnListEntry(EntityType.RABBIT, Config.rabbit_weight, Config.rabbit_group_min, Config.rabbit_group_max));
             }
         }
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent event) {
-        // do something when the server starts
     }
 }
