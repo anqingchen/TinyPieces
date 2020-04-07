@@ -7,6 +7,7 @@ import com.samaritans.tinypieces.config.RecipeEnabledCondition;
 import com.samaritans.tinypieces.core.ModBlocks;
 import com.samaritans.tinypieces.core.ModColorManager;
 import com.samaritans.tinypieces.core.ModEventHandlers;
+import com.samaritans.tinypieces.core.RenderHandler;
 import com.samaritans.tinypieces.world.CaveGeneration;
 import com.samaritans.tinypieces.world.OreGeneration;
 import com.samaritans.tinypieces.world.feature.ModFeature;
@@ -69,8 +70,6 @@ public class TinyPieces {
 
     private void setup(final FMLCommonSetupEvent event) {
         // pre-init
-        if (Config.sheep_stubble)
-            RenderingRegistry.registerEntityRenderingHandler(EntityType.SHEEP, StubbledSheepRenderer::new);
         CraftingHelper.register(RecipeEnabledCondition.Serializer.INSTANCE);
         OreGeneration.setupOreGen();
         CaveGeneration.setupCaveGen();
@@ -78,10 +77,7 @@ public class TinyPieces {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        // do something that can only be done on the client
-        ModColorManager.registerColourHandlers();
-        RenderTypeLookup.setRenderLayer(ModBlocks.ice_glaze, RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(ModBlocks.water_puddle, RenderType.getTranslucent());
+        RenderHandler.init();
     }
 
     private void registerSpawns(final FMLLoadCompleteEvent event) {
