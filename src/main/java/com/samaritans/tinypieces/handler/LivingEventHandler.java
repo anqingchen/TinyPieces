@@ -1,6 +1,7 @@
-package com.samaritans.tinypieces.core;
+package com.samaritans.tinypieces.handler;
 
 import com.samaritans.tinypieces.config.Config;
+import com.samaritans.tinypieces.core.ModBlocks;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -31,7 +32,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import java.util.Random;
 
 @SuppressWarnings("unused")
-public class ModEventHandlers {
+public class LivingEventHandler {
     private static final Biome.SpawnListEntry shulker = new Biome.SpawnListEntry(EntityType.SHULKER, Config.shulker_weight, Config.shulker_group_min, Config.shulker_group_max);
     private static final Biome.SpawnListEntry caveSpider = new Biome.SpawnListEntry(EntityType.CAVE_SPIDER, 40, 1, 3);
 

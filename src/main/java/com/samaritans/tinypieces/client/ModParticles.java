@@ -1,4 +1,4 @@
-package com.samaritans.tinypieces.core;
+package com.samaritans.tinypieces.client;
 
 import com.samaritans.tinypieces.TinyPieces;
 import com.samaritans.tinypieces.client.particle.NetherRodParticle;

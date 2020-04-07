@@ -3,11 +3,19 @@
   "block.tinypieces.quartz_ore": "Quartz Ore",
   "block.tinypieces.nether_rod": "Nether Rod",
   "block.tinypieces.red_nether_rod": "Red Nether Rod",
+  "block.tinypieces.charred_nether_rod": "Charred Nether Rod",
   "block.tinypieces.mossy_stone": "Mossy Stone",
   "block.tinypieces.ice_glaze": "Ice Glaze",
   "block.tinypieces.water_puddle": "Water Puddle",
+  "block.tinypieces.charred_nether_bricks": "Charred Nether Bricks",
+  "block.tinypieces.charred_nether_brick_wall": "Charred Nether Brick Wall",
+  "block.tinypieces.charred_nether_brick_slab": "Charred Nether Brick Slab",
+  "block.tinypieces.charred_nether_brick_stairs": "Charred Nether Brick Stairs",
+  "block.tinypieces.charred_nether_brick_fence": "Charred Nether Brick Fence",
+  "block.tinypieces.red_nether_brick_fence": "Red Nether Brick Fence",
 
   "item.tinypieces.cooked_egg": "Cooked Egg",
+  "item.tinypieces.wither_bone": "Wither Bone",
 
   "itemGroup.tabTinypieces": "Tiny Pieces"
 }

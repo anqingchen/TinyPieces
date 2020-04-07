@@ -4,8 +4,8 @@ import com.samaritans.tinypieces.config.Config;
 import com.samaritans.tinypieces.config.ConfigHolder;
 import com.samaritans.tinypieces.config.RecipeEnabledCondition;
 import com.samaritans.tinypieces.core.ModBlocks;
-import com.samaritans.tinypieces.core.ModEventHandlers;
-import com.samaritans.tinypieces.core.RenderHandler;
+import com.samaritans.tinypieces.handler.LivingEventHandler;
+import com.samaritans.tinypieces.client.RenderHandler;
 import com.samaritans.tinypieces.world.CaveGeneration;
 import com.samaritans.tinypieces.world.OreGeneration;
 import com.samaritans.tinypieces.world.feature.ModFeature;
@@ -50,11 +50,11 @@ public class TinyPieces {
         // Register the Config files
         final ModLoadingContext modLoadingContext = ModLoadingContext.get();
         modLoadingContext.registerConfig(ModConfig.Type.CLIENT, ConfigHolder.CLIENT_SPEC, "tinypieces-client.toml");
-        modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC, "tinypieces-server.toml");
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC, "tinypieces-common.toml");
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(ModEventHandlers.class);
+        MinecraftForge.EVENT_BUS.register(LivingEventHandler.class);
 
         ModFeature.init();
     }

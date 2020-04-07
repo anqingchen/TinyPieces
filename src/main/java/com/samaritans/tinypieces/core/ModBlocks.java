@@ -28,7 +28,7 @@ public class ModBlocks {
     public static final Block mossy_stone = null;
     public static final Block ice_glaze = null;
     public static final Block water_puddle = null;
-    public static final Block charred_nether_brick = null;
+    public static final Block charred_nether_bricks = null;
     public static final Block charred_nether_brick_wall = null;
     public static final Block charred_nether_brick_slab = null;
     public static final Block charred_nether_brick_stairs = null;
@@ -40,10 +40,10 @@ public class ModBlocks {
         event.getRegistry().registerAll(
                 Util.setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5).harvestLevel(2).harvestTool(ToolType.PICKAXE)), "nether_gold_ore"),
                 Util.setup(new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(5).harvestLevel(2).harvestTool(ToolType.PICKAXE)), "quartz_ore"),
-                Util.setup(new Block(Block.Properties.from(Blocks.NETHER_BRICKS)), "charred_nether_brick"),
+                Util.setup(new Block(Block.Properties.from(Blocks.NETHER_BRICKS)), "charred_nether_bricks"),
                 Util.setup(new WallBlock(Block.Properties.from(Blocks.NETHER_BRICK_WALL)), "charred_nether_brick_wall"),
                 Util.setup(new SlabBlock(Block.Properties.from(Blocks.NETHER_BRICK_SLAB)), "charred_nether_brick_slab"),
-                Util.setup(new StairsBlock(() -> ModBlocks.charred_nether_brick_stairs.getDefaultState(), Block.Properties.from(Blocks.NETHER_BRICK_STAIRS)), "charred_nether_brick_stairs"),
+                Util.setup(new StairsBlock(() -> ModBlocks.charred_nether_bricks.getDefaultState(), Block.Properties.from(Blocks.NETHER_BRICK_STAIRS)), "charred_nether_brick_stairs"),
                 Util.setup(new FenceBlock(Block.Properties.from(Blocks.NETHER_BRICK_FENCE)), "charred_nether_brick_fence"),
                 Util.setup(new FenceBlock(Block.Properties.from(Blocks.NETHER_BRICK_FENCE)), "red_nether_brick_fence"),
                 Util.setup(new NetherRodBlock(), "charred_nether_rod"),

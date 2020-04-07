@@ -1,6 +1,6 @@
 package com.samaritans.tinypieces.block;
 
-import com.samaritans.tinypieces.core.ModParticles;
+import com.samaritans.tinypieces.client.ModParticles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.EndRodBlock;

@@ -1,0 +1,6 @@
+{
+  "parent": "block/fence_inventory",
+  "textures": {
+    "texture": "tinypieces:block/charred_nether_bricks"
+  }
+}

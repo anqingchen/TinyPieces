@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "tinypieces:block/charred_nether_bricks",
+    "top": "tinypieces:block/charred_nether_bricks",
+    "side": "tinypieces:block/charred_nether_bricks"
+  }
+}
