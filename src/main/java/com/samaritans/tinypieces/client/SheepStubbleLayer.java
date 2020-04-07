@@ -1,15 +1,25 @@
 package com.samaritans.tinypieces.client;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.samaritans.tinypieces.TinyPieces;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
+import net.minecraft.client.renderer.entity.layers.ArmorLayer;
+import net.minecraft.client.renderer.entity.layers.EndermanEyesLayer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.client.renderer.entity.layers.SheepWoolLayer;
+import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.entity.model.SheepModel;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.lwjgl.opengl.GL11;
 
 @OnlyIn(Dist.CLIENT)
 public class SheepStubbleLayer extends LayerRenderer<SheepEntity, SheepModel<SheepEntity>> {
@@ -20,31 +30,31 @@ public class SheepStubbleLayer extends LayerRenderer<SheepEntity, SheepModel<She
         super(p_i50925_1_);
     }
 
-    public void render(SheepEntity sheepEntity, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
-        if (sheepEntity.getSheared() && !sheepEntity.isInvisible()) {
-            this.bindTexture(TEXTURE);
-
-            if (sheepEntity.hasCustomName() && "jeb_".equals(sheepEntity.getName().getUnformattedComponentText())) {
-                int lvt_10_1_ = sheepEntity.ticksExisted / 25 + sheepEntity.getEntityId();
-                int dyeColors = DyeColor.values().length;
-                int dyeIdA = lvt_10_1_ % dyeColors;
-                int dyeIdB = (lvt_10_1_ + 1) % dyeColors;
-                float lvt_14_1_ = ((float)(sheepEntity.ticksExisted % 25) + p_212842_4_) / 25.0F;
-                float[] lvt_15_1_ = SheepEntity.getDyeRgb(DyeColor.byId(dyeIdA));
-                float[] lvt_16_1_ = SheepEntity.getDyeRgb(DyeColor.byId(dyeIdB));
-                GlStateManager.color3f(lvt_15_1_[0] * (1.0F - lvt_14_1_) + lvt_16_1_[0] * lvt_14_1_, lvt_15_1_[1] * (1.0F - lvt_14_1_) + lvt_16_1_[1] * lvt_14_1_, lvt_15_1_[2] * (1.0F - lvt_14_1_) + lvt_16_1_[2] * lvt_14_1_);
+    public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int p_225628_3_, SheepEntity bah, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
+        if (bah.getSheared() && !bah.isInvisible()) {
+            float f;
+            float f1;
+            float f2;
+            if (bah.hasCustomName() && "jeb_".equals(bah.getName().getUnformattedComponentText())) {
+                int i = bah.ticksExisted / 25 + bah.getEntityId();
+                int j = DyeColor.values().length;
+                int k = i % j;
+                int l = (i + 1) % j;
+                float f3 = ((float)(bah.ticksExisted % 25) + p_225628_7_) / 25.0F;
+                float[] afloat1 = SheepEntity.getDyeRgb(DyeColor.byId(k));
+                float[] afloat2 = SheepEntity.getDyeRgb(DyeColor.byId(l));
+                f = afloat1[0] * (1.0F - f3) + afloat2[0] * f3;
+                f1 = afloat1[1] * (1.0F - f3) + afloat2[1] * f3;
+                f2 = afloat1[2] * (1.0F - f3) + afloat2[2] * f3;
             } else {
-                float[] dyeRgb = SheepEntity.getDyeRgb(sheepEntity.getFleeceColor());
-                GlStateManager.color3f(dyeRgb[0], dyeRgb[1], dyeRgb[2]);
+                float[] afloat = SheepEntity.getDyeRgb(bah.getFleeceColor());
+                f = afloat[0];
+                f1 = afloat[1];
+                f2 = afloat[2];
             }
 
-            ((SheepModel)this.getEntityModel()).setModelAttributes(this.sheepModel);
-            this.sheepModel.setLivingAnimations(sheepEntity, p_212842_2_, p_212842_3_, p_212842_4_);
-            this.sheepModel.render(sheepEntity, p_212842_2_, p_212842_3_, p_212842_5_, p_212842_6_, p_212842_7_, p_212842_8_);
+            render(this.getEntityModel(), this.sheepModel, TEXTURE, matrixStack, buffer, p_225628_3_, bah, p_225628_5_, p_225628_6_, p_225628_8_, p_225628_9_, p_225628_10_, p_225628_7_, f, f1, f2);
         }
-    }
 
-    public boolean shouldCombineTextures() {
-        return true;
     }
 }

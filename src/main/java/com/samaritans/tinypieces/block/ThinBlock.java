@@ -4,7 +4,6 @@ import com.samaritans.tinypieces.core.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -15,6 +14,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -24,11 +24,6 @@ public class ThinBlock extends Block {
 
     public ThinBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
     }
 
     @Override
@@ -62,7 +57,7 @@ public class ThinBlock extends Block {
     }
 
     @Override
-    public void randomTick(BlockState blockState, World world, BlockPos pos, Random random) {
+    public void randomTick(BlockState blockState, ServerWorld world, BlockPos pos, Random random) {
         super.randomTick(blockState, world, pos, random);
         if (blockState.getBlock() == ModBlocks.water_puddle && !world.isRainingAt(pos) && world.canBlockSeeSky(pos)) {
             if (random.nextInt(3) == 0) {
@@ -72,6 +67,7 @@ public class ThinBlock extends Block {
             world.removeBlock(pos, false);
         }
     }
+
 
     @Nullable
     @Override
@@ -89,10 +85,10 @@ public class ThinBlock extends Block {
 
     @Override
     public boolean isValidPosition(BlockState blockState, IWorldReader worldIn, BlockPos pos) {
-        return true;//is(worldIn, pos.down(), Direction.UP);
+        return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
     }
 
     public static boolean canPlaceOn(BlockState blockState, IWorldReader world, BlockPos pos) {
-        return true;//func_220055_a(world, pos.down(), Direction.UP); todo
+        return hasEnoughSolidSide(world, pos.down(), Direction.UP);
     }
 }

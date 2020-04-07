@@ -90,7 +90,7 @@ public class ModEventHandlers {
                             break;
                         }
                         blockpos1 = blockpos1.add(rand.nextInt(4) - 1, (rand.nextInt(4) - 1) * rand.nextInt(4) / 2, rand.nextInt(4) - 1);
-                        if (worldIn.getBlockState(blockpos1.down()) != blockstate || worldIn.getBlockState(blockpos1).func_224756_o(worldIn, blockpos1)) {
+                        if (worldIn.getBlockState(blockpos1.down()) != blockstate || worldIn.getBlockState(blockpos1).isFullCube(worldIn, blockpos1)) {
                             break;
                         }
                         ++j;
@@ -113,7 +113,7 @@ public class ModEventHandlers {
                 AnimalEntity parentB = (AnimalEntity) event.getParentB();
                 AgeableEntity ageableEntity = parentA.createChild(parentB);
                 ageableEntity.setGrowingAge(-24000);
-                ageableEntity.setLocationAndAngles(parentA.posX, parentA.posY, parentA.posZ, 0.0F, 0.0F);
+                ageableEntity.setLocationAndAngles(parentA.getPositionVec().x, parentA.getPositionVec().y, parentA.getPositionVec().z, 0.0F, 0.0F);
                 world.addEntity(ageableEntity);
             }
         }
@@ -124,7 +124,7 @@ public class ModEventHandlers {
         if (!event.getEntityLiving().world.isRemote && Config.chicken_feather && event.getEntityLiving() instanceof ChickenEntity) {
             LivingEntity chicken = event.getEntityLiving();
             if (chicken.world.isAreaLoaded(chicken.getPosition(), 1) && !chicken.isChild() && chicken.getRNG().nextInt(600) == 0) {
-                InventoryHelper.spawnItemStack(chicken.world, chicken.posX, chicken.posY, chicken.posZ, new ItemStack(Items.FEATHER));
+                InventoryHelper.spawnItemStack(chicken.world, chicken.getPositionVec().x, chicken.getPositionVec().y, chicken.getPositionVec().z, new ItemStack(Items.FEATHER));
             }
         }
     }
@@ -163,7 +163,7 @@ public class ModEventHandlers {
         if (!world.isRemote && event.getEntityLiving() instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getEntityLiving();
             Entity witherSkeleton = EntityType.WITHER_SKELETON.create(world);
-            witherSkeleton.setPosition(player.posX, player.posY, player.posZ);
+            witherSkeleton.setPosition(player.getPositionVec().x, player.getPositionVec().y, player.getPositionVec().z);
             witherSkeleton.setCustomName(player.getDisplayName());
             world.addEntity(witherSkeleton);
         }

@@ -38,7 +38,7 @@ public class CaveDeadCoralFeature extends Feature<NoFeatureConfig> {
                         break;
                     }
                     blockpos1 = blockpos1.add(rand.nextInt(4) - 1, (rand.nextInt(4) - 1) * rand.nextInt(4) / 2, rand.nextInt(4) - 1);
-                    if (worldIn.getBlockState(blockpos1).func_224756_o(worldIn, blockpos1)) {
+                    if (worldIn.getBlockState(blockpos1).isFullCube(worldIn, blockpos1)) {
                         break;
                     }
                     ++j;

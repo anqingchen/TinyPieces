@@ -19,6 +19,7 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = TinyPieces.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(TinyPieces.MODID)
 public class ModBlocks {
+    //todo: use deferred register
     public static final Block nether_gold_ore = null;
     public static final Block quartz_ore = null;
     public static final Block nether_rod = null;

@@ -10,10 +10,6 @@ import net.minecraft.world.gen.placement.Placement;
 
 public class GenerationHelper {
     public static void addOreGentoBiome(Biome biome, OreFeatureConfig.FillerBlockType filler, BlockState blockState, int size, int count, int min, int max) {
-        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
-                Biome.createDecoratedFeature(Feature.ORE,
-                        new OreFeatureConfig(filler, blockState, size),
-                        Placement.COUNT_RANGE,
-                        new CountRangeConfig(count, min, 0, max)));
+        biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.configure(new OreFeatureConfig(filler, blockState, size)).createDecoratedFeature(Placement.COUNT_RANGE.configure(new CountRangeConfig(count, min, 0, max))));
     }
 }

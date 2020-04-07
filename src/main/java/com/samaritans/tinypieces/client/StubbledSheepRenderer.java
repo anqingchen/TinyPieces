@@ -1,7 +1,9 @@
 package com.samaritans.tinypieces.client;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.SheepRenderer;
 import net.minecraft.client.renderer.entity.layers.SheepWoolLayer;
 import net.minecraft.client.renderer.entity.model.SheepModel;
 import net.minecraft.entity.passive.SheepEntity;
@@ -16,7 +18,7 @@ public class StubbledSheepRenderer extends MobRenderer<SheepEntity, SheepModel<S
         this.addLayer(new SheepStubbleLayer(this));
     }
 
-    protected ResourceLocation getEntityTexture(SheepEntity p_110775_1_) {
+    public ResourceLocation getEntityTexture(SheepEntity p_110775_1_) {
         return SHEARED_SHEEP_TEXTURES;
     }
 }

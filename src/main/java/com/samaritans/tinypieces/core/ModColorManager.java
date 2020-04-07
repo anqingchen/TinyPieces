@@ -31,7 +31,7 @@ public class ModColorManager {
                 return BiomeColors.getWaterColor(blockAccess, pos);
             }
             // todo: find default water color
-            return GrassColors.get(0.5d, 1.0d);
+            return 8863;
         };
 
         blockColors.register(waterColorHandler, ModBlocks.water_puddle);

@@ -10,6 +10,9 @@ import com.samaritans.tinypieces.core.ModEventHandlers;
 import com.samaritans.tinypieces.world.CaveGeneration;
 import com.samaritans.tinypieces.world.OreGeneration;
 import com.samaritans.tinypieces.world.feature.ModFeature;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.SheepEntity;
@@ -73,7 +76,7 @@ public class TinyPieces {
     private void setup(final FMLCommonSetupEvent event) {
         // pre-init
         if (Config.sheep_stubble)
-            RenderingRegistry.registerEntityRenderingHandler(SheepEntity.class, StubbledSheepRenderer::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityType.SHEEP, StubbledSheepRenderer::new);
         CraftingHelper.register(RecipeEnabledCondition.Serializer.INSTANCE);
         OreGeneration.setupOreGen();
         CaveGeneration.setupCaveGen();
@@ -83,6 +86,8 @@ public class TinyPieces {
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
         ModColorManager.registerColourHandlers();
+        RenderTypeLookup.setRenderLayer(ModBlocks.ice_glaze, RenderType.getTranslucent()); //might create a separate proxy for this stuff if it gets weird
+        RenderTypeLookup.setRenderLayer(ModBlocks.water_puddle, RenderType.getTranslucent());
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {

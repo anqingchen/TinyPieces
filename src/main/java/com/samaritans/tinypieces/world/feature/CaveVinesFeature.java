@@ -21,7 +21,7 @@ public class CaveVinesFeature extends Feature<NoFeatureConfig> {
 
     @Override
     public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random random, BlockPos blockPos, NoFeatureConfig config) {
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(blockPos);
+        BlockPos.Mutable pos = new BlockPos.Mutable(blockPos);
         for (int y = blockPos.getY(); y > 0; --y) {
             pos.setPos(blockPos);
             pos.add(random.nextInt(4) - random.nextInt(4), 0, random.nextInt(4) - random.nextInt(4));
