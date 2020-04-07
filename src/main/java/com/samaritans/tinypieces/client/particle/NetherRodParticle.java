@@ -1,4 +1,4 @@
-package com.samaritans.tinypieces.client;
+package com.samaritans.tinypieces.client.particle;
 
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;

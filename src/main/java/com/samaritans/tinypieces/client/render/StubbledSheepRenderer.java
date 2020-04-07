@@ -1,9 +1,7 @@
-package com.samaritans.tinypieces.client;
+package com.samaritans.tinypieces.client.render;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.SheepRenderer;
 import net.minecraft.client.renderer.entity.layers.SheepWoolLayer;
 import net.minecraft.client.renderer.entity.model.SheepModel;
 import net.minecraft.entity.passive.SheepEntity;

@@ -1,7 +1,7 @@
 package com.samaritans.tinypieces.core;
 
 import com.samaritans.tinypieces.TinyPieces;
-import com.samaritans.tinypieces.client.NetherRodParticle;
+import com.samaritans.tinypieces.client.particle.NetherRodParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;

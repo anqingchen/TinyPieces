@@ -1,6 +1,6 @@
 package com.samaritans.tinypieces.core;
 
-import com.samaritans.tinypieces.client.StubbledSheepRenderer;
+import com.samaritans.tinypieces.client.render.StubbledSheepRenderer;
 import com.samaritans.tinypieces.config.Config;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;

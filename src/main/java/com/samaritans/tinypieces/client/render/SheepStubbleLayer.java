@@ -1,4 +1,4 @@
-package com.samaritans.tinypieces.client;
+package com.samaritans.tinypieces.client.render;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
