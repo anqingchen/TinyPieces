@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.entity.living.BabyEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -43,8 +44,8 @@ public class LivingEventHandler {
         if (!event.getWorld().isRemote && (iceEnabled || waterEnabled) && event.getPlayer().isSneaking() && PotionUtils.getPotionFromItem(event.getItemStack()) == Potions.WATER &&
                 event.getPlayer().canPlayerEdit(event.getPos(), event.getFace(), event.getItemStack())) {
             BlockPos target = event.getWorld().getBlockState(event.getPos()).getMaterial().isReplaceable() ? event.getPos() : event.getPos().offset(event.getFace());
-            BlockState setTo = waterEnabled ? ModBlocks.water_puddle.getDefaultState() : ModBlocks.ice_glaze.getDefaultState();
-            if (iceEnabled && BiomeDictionary.hasType(event.getWorld().getBiome(target), BiomeDictionary.Type.COLD)) setTo = ModBlocks.ice_glaze.getDefaultState();
+            BlockState setTo = waterEnabled ? ModBlocks.water_puddle.get().getDefaultState() : ModBlocks.ice_glaze.get().getDefaultState();
+            if (iceEnabled && BiomeDictionary.hasType(event.getWorld().getBiome(target), BiomeDictionary.Type.COLD)) setTo = ModBlocks.ice_glaze.get().getDefaultState();
             event.getWorld().setBlockState(target, setTo);
             if (!event.getPlayer().isCreative()) event.getItemStack().shrink(1);
         }
@@ -57,7 +58,7 @@ public class LivingEventHandler {
             Block target = event.getWorld().getBlockState(event.getPos()).getBlock();
             boolean flag = true;
             if (target == Blocks.STONE && Config.mossy_stone)
-                event.getWorld().setBlockState(event.getPos(), ModBlocks.mossy_stone.getDefaultState());
+                event.getWorld().setBlockState(event.getPos(), ModBlocks.mossy_stone.get().getDefaultState());
             else if (target == Blocks.COBBLESTONE)
                 event.getWorld().setBlockState(event.getPos(), Blocks.MOSSY_COBBLESTONE.getDefaultState());
             else if (target == Blocks.STONE_BRICKS)

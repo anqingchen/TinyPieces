@@ -25,7 +25,7 @@ public class CaveFloorFeature extends Feature<NoFeatureConfig> {
     public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> generator, Random random, BlockPos blockPos, NoFeatureConfig config) {
         for (BlockPos pos : BlockPos.getAllInBoxMutable(blockPos.add(-3, -2, -3), blockPos.add(3, 2, 3))) {
             if (world.getBlockState(pos).isAir() && ThinBlock.canPlaceOn(world.getBlockState(pos), world, pos) && random.nextDouble() < 0.65) {
-                world.setBlockState(pos, frozen ? ModBlocks.ice_glaze.getDefaultState() : ModBlocks.water_puddle.getDefaultState(), 2);
+                world.setBlockState(pos, frozen ? ModBlocks.ice_glaze.get().getDefaultState() : ModBlocks.water_puddle.get().getDefaultState(), 2);
             }
         }
         return true;

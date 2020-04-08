@@ -18,10 +18,6 @@
     {
       "type": "tinypieces:recipe_enabled",
       "item": "charred_suite"
-    },
-    {
-      "type": "tinypieces:recipe_enabled",
-      "item": "!extra_stairs"
     }
   ]
 }

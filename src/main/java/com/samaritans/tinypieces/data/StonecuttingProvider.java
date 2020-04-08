@@ -25,8 +25,9 @@ public class StonecuttingProvider extends RecipeProvider {
 
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-        consumer.accept(stonecutting(ModBlocks.charred_nether_bricks, ModBlocks.charred_nether_brick_slab, 2));
-        consumer.accept(stonecutting(ModBlocks.charred_nether_bricks, ModBlocks.charred_nether_brick_stairs));
+        consumer.accept(stonecutting(ModBlocks.charred_nether_bricks.get(), ModBlocks.charred_nether_brick_slab.get(), 2));
+        consumer.accept(stonecutting(ModBlocks.charred_nether_bricks.get(), ModBlocks.charred_nether_brick_stairs.get()));
+        consumer.accept(stonecutting(ModBlocks.charred_nether_bricks.get(), ModBlocks.charred_nether_brick_wall.get()));
     }
 
     @Nonnull
@@ -45,11 +46,6 @@ public class StonecuttingProvider extends RecipeProvider {
 
     private static IFinishedRecipe stonecutting(IItemProvider input, IItemProvider output, int count) {
         return new Result(idFor(input, output), IRecipeSerializer.STONECUTTING, Ingredient.fromItems(input), output.asItem(), count);
-    }
-
-    private static IFinishedRecipe azulejoStonecutting(List<? extends IItemProvider> inputs, IItemProvider output) {
-        Ingredient input = Ingredient.fromItems(inputs.stream().filter(obj -> output != obj).toArray(IItemProvider[]::new));
-        return new Result(new ResourceLocation(TinyPieces.MODID, "stonecutting/" + output.asItem().getRegistryName().getPath()), IRecipeSerializer.STONECUTTING, input, output.asItem(), 1);
     }
 
     public static class Result extends SingleItemRecipeBuilder.Result {

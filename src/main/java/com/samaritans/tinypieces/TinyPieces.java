@@ -4,6 +4,7 @@ import com.samaritans.tinypieces.config.Config;
 import com.samaritans.tinypieces.config.ConfigHolder;
 import com.samaritans.tinypieces.config.RecipeEnabledCondition;
 import com.samaritans.tinypieces.core.ModBlocks;
+import com.samaritans.tinypieces.core.ModItems;
 import com.samaritans.tinypieces.handler.LivingEventHandler;
 import com.samaritans.tinypieces.client.RenderHandler;
 import com.samaritans.tinypieces.world.CaveGeneration;
@@ -36,32 +37,27 @@ public class TinyPieces {
     public static final ItemGroup TAB = new ItemGroup("tabTinypieces") {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(ModBlocks.red_nether_rod);
+            return new ItemStack(ModBlocks.red_nether_rod.get());
         }
     };
 
     public TinyPieces() {
-        // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-        // Register rabbit spawns
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerSpawns);
-
-        // Register the Config files
         final ModLoadingContext modLoadingContext = ModLoadingContext.get();
         modLoadingContext.registerConfig(ModConfig.Type.CLIENT, ConfigHolder.CLIENT_SPEC, "tinypieces-client.toml");
         modLoadingContext.registerConfig(ModConfig.Type.COMMON, ConfigHolder.SERVER_SPEC, "tinypieces-server.toml");
-
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(LivingEventHandler.class);
 
-        ModFeature.init();
+        ModBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ModFeature.FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        // pre-init
+       // ModBlocks.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         CraftingHelper.register(RecipeEnabledCondition.Serializer.INSTANCE);
         OreGeneration.setupOreGen();
         CaveGeneration.setupCaveGen();

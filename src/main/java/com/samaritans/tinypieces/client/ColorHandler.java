@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 public class ColorHandler {
     @SubscribeEvent
     public static void colorBlocks(ColorHandlerEvent.Block event) {
-        event.getBlockColors().register((state, light, pos, layer) -> light != null && pos != null ? BiomeColors.getWaterColor(light, pos) : 8863, ModBlocks.water_puddle);
+        event.getBlockColors().register((state, light, pos, layer) -> light != null && pos != null ? BiomeColors.getWaterColor(light, pos) : 8863, ModBlocks.water_puddle.get());
 }
 
     @SubscribeEvent
@@ -29,6 +29,6 @@ public class ColorHandler {
         event.getItemColors().register((stack, layer) ->  {
             BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
             return event.getBlockColors().getColor(blockstate, null, null, layer);
-        }, ModBlocks.water_puddle);
+        }, ModBlocks.water_puddle.get());
     }
 }

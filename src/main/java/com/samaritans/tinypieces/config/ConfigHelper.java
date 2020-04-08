@@ -28,7 +28,6 @@ public class ConfigHelper {
         Config.chicken_feather = ConfigHolder.SERVER.CHICKEN_FEATHER.get();
         Config.pig_rabbit_litter = ConfigHolder.SERVER.PIG_RABBIT_LITTER.get();
         Config.pet = ConfigHolder.SERVER.PET.get();
-        Config.extra_stairs = ConfigHolder.SERVER.EXTRA_STAIRS.get();
         Config.bonemeal_stone = ConfigHolder.SERVER.BONEMEAL_STONE.get();
         Config.bonemeal_flower = ConfigHolder.SERVER.BONEMEAL_FLOWER.get();
         Config.pickup_cake = ConfigHolder.SERVER.PICKUP_CAKE.get();

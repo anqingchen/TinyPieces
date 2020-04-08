@@ -20,9 +20,7 @@ public class SmeltingProvider extends net.minecraft.data.RecipeProvider{
 
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.EGG), ModItems.cooked_egg, 0.35f, 200, CookingRecipeSerializer.CAMPFIRE_COOKING)
-                .addCriterion("has_item", hasItem(Items.EGG))
-                .build(consumer, new ResourceLocation(TinyPieces.MODID, "smelting/" + "cooked_egg"));
+
     }
 
     private void cookFood(Consumer<IFinishedRecipe> consumer, IItemProvider output, IItemProvider input) {

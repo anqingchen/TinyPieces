@@ -4,20 +4,17 @@ import com.samaritans.tinypieces.core.Util;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.ReplaceBlockConfig;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ModFeature {
-    public static final Feature<NoFeatureConfig> CAVE_VINES = new CaveVinesFeature(NoFeatureConfig::deserialize);
-    public static final Feature<NoFeatureConfig> ICE_GLAZE_FLOOR = new CaveFloorFeature(NoFeatureConfig::deserialize, true);
-    public static final Feature<NoFeatureConfig> WATER_PUDDLE_FLOOR = new CaveFloorFeature(NoFeatureConfig::deserialize, false);
-    public static final Feature<ReplaceBlockConfig> CAVE_WALL = new CaveWallFeature(ReplaceBlockConfig::deserialize);
-    public static final Feature<NoFeatureConfig> CAVE_DEAD_CORAL = new CaveDeadCoralFeature(NoFeatureConfig::deserialize);
+import static com.samaritans.tinypieces.TinyPieces.MODID;
 
-    public static void init() {
-        ForgeRegistries.FEATURES.register(Util.setup(CAVE_VINES, "cave_vines"));
-        ForgeRegistries.FEATURES.register(Util.setup(ICE_GLAZE_FLOOR, "ice_glaze_floor"));
-        ForgeRegistries.FEATURES.register(Util.setup(WATER_PUDDLE_FLOOR, "water_puddle_floor"));
-        ForgeRegistries.FEATURES.register(Util.setup(CAVE_WALL, "cave_wall"));
-        ForgeRegistries.FEATURES.register(Util.setup(CAVE_DEAD_CORAL, "cave_coral"));
-    }
+public class ModFeature {
+    public static final DeferredRegister<Feature<?>> FEATURES = new DeferredRegister<>(ForgeRegistries.FEATURES, MODID);
+    public static final RegistryObject<Feature<NoFeatureConfig>> CAVE_VINES = FEATURES.register("cave_vines", () -> new CaveVinesFeature(NoFeatureConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> ICE_GLAZE_FLOOR = FEATURES.register("ice_glaze_floor", () -> new CaveFloorFeature(NoFeatureConfig::deserialize, true));
+    public static final RegistryObject<Feature<NoFeatureConfig>> WATER_PUDDLE_FLOOR = FEATURES.register("water_puddle_floor", () -> new CaveFloorFeature(NoFeatureConfig::deserialize, false));
+    public static final RegistryObject<Feature<ReplaceBlockConfig>> CAVE_WALL = FEATURES.register("cave_wall", () -> new CaveWallFeature(ReplaceBlockConfig::deserialize));
+    public static final RegistryObject<Feature<NoFeatureConfig>> CAVE_DEAD_CORAL = FEATURES.register("cave_coral", () -> new CaveDeadCoralFeature(NoFeatureConfig::deserialize));
 }

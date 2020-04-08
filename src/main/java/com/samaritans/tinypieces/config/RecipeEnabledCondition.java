@@ -33,8 +33,6 @@ public class RecipeEnabledCondition implements ICondition {
             case "mossy_stone": return Config.mossy_stone;
             case "nether_rod": return Config.nether_rods;
             case "charred_suite": return Config.charred_suite;
-            case "extra_stairs": return Config.extra_stairs;
-            case "!extra_stairs": return !Config.extra_stairs;
             case "red_nether_brick_fence": return Config.red_nether_brick_fence;
         }
         return true;

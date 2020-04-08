@@ -33,7 +33,7 @@ public class ThinBlock extends Block {
 
     @Override
     public VoxelShape getShape(BlockState blockState, IBlockReader p_220053_2_, BlockPos p_220053_3_, ISelectionContext p_220053_4_) {
-        return blockState.getBlock() == ModBlocks.ice_glaze ? SHAPE : VoxelShapes.empty();
+        return blockState.getBlock() == ModBlocks.ice_glaze.get() ? SHAPE : VoxelShapes.empty();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ThinBlock extends Block {
     @Override
     public void randomTick(BlockState blockState, ServerWorld world, BlockPos pos, Random random) {
         super.randomTick(blockState, world, pos, random);
-        if (blockState.getBlock() == ModBlocks.water_puddle && !world.isRainingAt(pos) && world.canBlockSeeSky(pos)) {
+        if (blockState.getBlock() == ModBlocks.water_puddle.get() && !world.isRainingAt(pos) && world.canBlockSeeSky(pos)) {
             if (random.nextInt(3) == 0) {
                 world.removeBlock(pos, false);
             }
