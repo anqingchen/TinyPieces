@@ -52,8 +52,9 @@ public class ConfigHelper {
         Config.quartz_ore_height_min = ConfigHolder.SERVER.QUARTZ_ORE_HEIGHT_MIN.get();
         Config.quartz_ore_height_max = ConfigHolder.SERVER.QUARTZ_ORE_HEIGHT_MAX.get();
 
-        Config.nether_rod = ConfigHolder.SERVER.NETHER_ROD.get();
-        Config.red_nether_rod = ConfigHolder.SERVER.RED_NETHER_ROD.get();
+        Config.nether_rods = ConfigHolder.SERVER.NETHER_RODS.get();
+        Config.charred_suite = ConfigHolder.SERVER.CHARRED_SUITE.get();
+        Config.red_nether_brick_fence = ConfigHolder.SERVER.RED_NETHER_BRICK_FENCE.get();
         Config.mossy_stone = ConfigHolder.SERVER.MOSSY_STONE.get();
         Config.ice_glaze = ConfigHolder.SERVER.ICE_GLAZE.get();
         Config.water_puddle = ConfigHolder.SERVER.WATER_PUDDLE.get();

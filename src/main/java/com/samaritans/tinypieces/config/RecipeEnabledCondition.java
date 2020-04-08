@@ -1,11 +1,17 @@
 package com.samaritans.tinypieces.config;
 
+import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.samaritans.tinypieces.TinyPieces;
+import net.minecraft.advancements.ICriterionInstance;
+import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
+import net.minecraft.advancements.criterion.CriterionInstance;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
+import net.minecraftforge.common.util.JsonUtils;
 
 public class RecipeEnabledCondition implements ICondition {
     private static final ResourceLocation NAME = new ResourceLocation(TinyPieces.MODID, "recipe_enabled");
@@ -25,9 +31,11 @@ public class RecipeEnabledCondition implements ICondition {
         switch (this.item) {
             case "cooked_egg": return Config.cooked_egg;
             case "mossy_stone": return Config.mossy_stone;
-            case "nether_rod": return Config.nether_rod;
-            case "red_nether_rod": return Config.red_nether_rod;
+            case "nether_rod": return Config.nether_rods;
+            case "charred_suite": return Config.charred_suite;
             case "extra_stairs": return Config.extra_stairs;
+            case "!extra_stairs": return !Config.extra_stairs;
+            case "red_nether_brick_fence": return Config.red_nether_brick_fence;
         }
         return true;
     }
@@ -43,8 +51,7 @@ public class RecipeEnabledCondition implements ICondition {
         }
 
         @Override
-        public RecipeEnabledCondition read(JsonObject json)
-        {
+        public RecipeEnabledCondition read(JsonObject json) {
             return new RecipeEnabledCondition(JSONUtils.getString(json, "item"));
         }
 

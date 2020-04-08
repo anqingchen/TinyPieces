@@ -48,8 +48,9 @@ final class ServerConfig {
     final ForgeConfigSpec.IntValue QUARTZ_ORE_SIZE;
     final ForgeConfigSpec.IntValue QUARTZ_ORE_HEIGHT_MAX;
     final ForgeConfigSpec.IntValue QUARTZ_ORE_HEIGHT_MIN;
-    final ForgeConfigSpec.BooleanValue NETHER_ROD;
-    final ForgeConfigSpec.BooleanValue RED_NETHER_ROD;
+    final ForgeConfigSpec.BooleanValue NETHER_RODS;
+    final ForgeConfigSpec.BooleanValue CHARRED_SUITE;
+    final ForgeConfigSpec.BooleanValue RED_NETHER_BRICK_FENCE;
     final ForgeConfigSpec.BooleanValue MOSSY_STONE;
     final ForgeConfigSpec.BooleanValue ICE_GLAZE;
     final ForgeConfigSpec.BooleanValue WATER_PUDDLE;
@@ -145,10 +146,12 @@ final class ServerConfig {
         QUARTZ_ORE_HEIGHT_MAX = builder.comment("Set Maximum Y-Level of Quartz Ores")
                 .defineInRange("Quartz Ore Max Height", 16, 0, 127);
         builder.pop();
-        NETHER_ROD = builder.comment("Enable Nether Rod Blocks")
+        NETHER_RODS = builder.comment("Enable Nether Rod Blocks")
                 .define("Enable Nether Rods", true);
-        RED_NETHER_ROD = builder.comment("Enable Red Nether Rod Blocks")
-                .define("Enable Red Nether Rods", true);
+        CHARRED_SUITE = builder.comment("Enable Charred Nether Brick Blocks")
+                .define("Enable Charred Suite", true);
+        RED_NETHER_BRICK_FENCE = builder.comment("Enable Red Nether Brick Fence Blocks")
+                .define("Enable Red Nether Brick Fence", true);
         MOSSY_STONE = builder.comment("Enable Mossy Stone Blocks")
                 .define("Enable Mossy Stone", true);
         ICE_GLAZE = builder.comment("Enable Ice Glaze Blocks")

@@ -1,25 +1,25 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "/",
-    "#"
+    "C#",
+    "#C"
   ],
   "key": {
     "#": {
-      "item": "minecraft:red_nether_bricks"
+      "item": "minecraft:nether_brick"
     },
-    "/": {
-      "item": "minecraft:blaze_rod"
+    "C": {
+      "item": "minecraft:coal"
     }
   },
   "result": {
-    "item": "tinypieces:red_nether_rod",
-    "count": 4
+    "item": "tinypieces:charred_nether_bricks",
+    "count": 1
   },
   "conditions": [
     {
       "type": "tinypieces:recipe_enabled",
-      "item": "nether_rod"
+      "item": "charred_suite"
     }
   ]
 }

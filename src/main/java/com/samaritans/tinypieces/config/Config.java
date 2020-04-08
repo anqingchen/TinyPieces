@@ -44,8 +44,9 @@ public class Config {
     public static int quartz_ore_height_min;
     public static int quartz_ore_height_max;
 
-    public static boolean nether_rod;
-    public static boolean red_nether_rod;
+    public static boolean nether_rods;
+    public static boolean charred_suite;
+    public static boolean red_nether_brick_fence;
     public static boolean mossy_stone;
     public static boolean ice_glaze;
     public static boolean water_puddle;
