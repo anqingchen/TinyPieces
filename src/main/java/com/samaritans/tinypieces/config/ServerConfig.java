@@ -56,6 +56,7 @@ final class ServerConfig {
 
     private static final String CATEGORY_ITEMS = "items";
     final ForgeConfigSpec.BooleanValue COOKED_EGG;
+    final ForgeConfigSpec.BooleanValue WITHER_BONE;
 
     ServerConfig(final ForgeConfigSpec.Builder builder) {
         builder.push(CATEGORY_TWEAKS);
@@ -160,6 +161,8 @@ final class ServerConfig {
         builder.push(CATEGORY_ITEMS);
         COOKED_EGG = builder.comment("Enable Cooked Egg Items")
                 .define("Enable Cooked Eggs", true);
+        WITHER_BONE = builder.comment("Enable Wither Bone Items")
+                .define("Enable Wither Bones", true);
         builder.pop();
     }
 }

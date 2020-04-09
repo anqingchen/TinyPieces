@@ -51,4 +51,5 @@ public class Config {
     public static boolean water_puddle;
 
     public static boolean cooked_egg;
+    public static boolean wither_bone;
 }

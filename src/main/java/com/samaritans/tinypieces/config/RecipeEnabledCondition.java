@@ -34,6 +34,7 @@ public class RecipeEnabledCondition implements ICondition {
             case "nether_rod": return Config.nether_rods;
             case "charred_suite": return Config.charred_suite;
             case "red_nether_brick_fence": return Config.red_nether_brick_fence;
+            case "wither_bone": return Config.wither_bone;
         }
         return true;
     }

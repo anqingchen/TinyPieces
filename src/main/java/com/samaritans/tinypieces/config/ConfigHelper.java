@@ -59,6 +59,7 @@ public class ConfigHelper {
         Config.water_puddle = ConfigHolder.SERVER.WATER_PUDDLE.get();
 
         Config.cooked_egg = ConfigHolder.SERVER.COOKED_EGG.get();
+        Config.wither_bone = ConfigHolder.SERVER.WITHER_BONE.get();
     }
 
     /**

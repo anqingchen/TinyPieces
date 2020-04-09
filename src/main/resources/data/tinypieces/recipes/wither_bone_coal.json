@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tinypieces:wither_bone"
+    },
+    {
+      "item": "tinypieces:wither_bone"
+    }
+  ],
+  "result": {
+    "item": "minecraft:coal"
+  },
+  "conditions": [
+    {
+      "type": "tinypieces:recipe_enabled",
+      "item": "wither_bone"
+    }
+  ]
+}
